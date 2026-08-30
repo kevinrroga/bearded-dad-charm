@@ -147,10 +147,51 @@ const reviews = [
 ];
 
 const rooms = [
-  { name: "Yellow Dorm", capacity: "Up to 8 persons", type: "Mixed dorm" },
-  { name: "Purple Dorm", capacity: "Up to 6 persons", type: "Mixed dorm" },
-  { name: "Green Dorm", capacity: "Up to 6 persons", type: "Mixed dorm" },
-  { name: "Private Room", capacity: "Up to 3 persons", type: "Double + single bed" },
+  {
+    name: "Standard 8-Bed Mixed Dorm",
+    location: "Main building",
+    capacity: "Sleeps 8",
+    type: "Mixed dorm",
+    price: "ALL 1,710",
+    badge: null as string | null,
+    features: ["Air conditioning", "Security lockers", "Charging points", "Shared bathroom", "Kitchen access"],
+  },
+  {
+    name: "Standard 8-Bed Mixed Dorm",
+    location: "Annex · 20 m away",
+    capacity: "Sleeps 8",
+    type: "Mixed dorm",
+    price: "ALL 1,710",
+    badge: null as string | null,
+    features: ["Air conditioning", "Security lockers", "Charging points", "Shared bathroom", "Kitchen access"],
+  },
+  {
+    name: "Standard 6-Bed Mixed Dorm",
+    location: "Main building",
+    capacity: "Sleeps 6",
+    type: "Mixed dorm",
+    price: "ALL 1,895",
+    badge: null as string | null,
+    features: ["Air conditioning", "Security lockers", "Shared bathroom", "Kitchen access"],
+  },
+  {
+    name: "Deluxe 5-Bed Mixed Dorm",
+    location: "Private villa · 100 m away",
+    capacity: "Sleeps 5",
+    type: "3 singles + 2 bunks",
+    price: "ALL 1,988",
+    badge: "Ensuite" as string | null,
+    features: ["Private en-suite bathroom", "Fitted kitchen", "Security lockers", "Air conditioning"],
+  },
+  {
+    name: "Deluxe 6-Bed Female Dorm",
+    location: "Private villa · 100 m away",
+    capacity: "Sleeps 6",
+    type: "6 bunk beds",
+    price: "ALL 2,081",
+    badge: "Female Only" as string | null,
+    features: ["Private en-suite bathroom", "Fitted kitchen", "Security lockers", "Air conditioning"],
+  },
 ];
 
 const faqs = [
@@ -545,29 +586,38 @@ function Index() {
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">Rooms</p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">Where you'll sleep</h2>
             <p className="mt-3 text-muted-foreground">
-              Every room: shared bathrooms (one on each floor), A/C, balcony or terrace access,
-              and free breakfast included.
+              All rooms include free breakfast, air conditioning, and security lockers.
+              Prices are per bed per night, taxes not included.
             </p>
           </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rooms.map((r, i) => (
               <Reveal
-                key={r.name}
+                key={r.name + i}
                 delay={i * 70}
                 className="flex flex-col rounded-3xl border border-border bg-card p-6"
               >
-                <h3 className="font-display text-2xl text-primary">{r.name}</h3>
-                <p className="mt-2 text-sm font-medium">{r.capacity}</p>
-                <p className="text-sm text-muted-foreground">{r.type}</p>
-                <ul className="mt-4 flex-1 space-y-1.5 text-sm text-muted-foreground">
-                  {["Shared bathrooms", "Air conditioning", "Balcony / terrace access", "Breakfast included"].map(
-                    (f) => (
-                      <li key={f} className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-accent" />
-                        {f}
-                      </li>
-                    ),
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-display text-xl leading-tight text-primary">{r.name}</h3>
+                  {r.badge && (
+                    <span className="shrink-0 rounded-full bg-accent/15 px-2.5 py-1 text-xs font-semibold text-accent">
+                      {r.badge}
+                    </span>
                   )}
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">{r.location}</p>
+                <div className="mt-3 flex items-baseline gap-1.5">
+                  <span className="font-display text-2xl font-semibold">{r.price}</span>
+                  <span className="text-xs text-muted-foreground">/ bed / night</span>
+                </div>
+                <p className="mt-0.5 text-sm text-muted-foreground">{r.capacity} · {r.type}</p>
+                <ul className="mt-4 flex-1 space-y-1.5 text-sm text-muted-foreground">
+                  {["Free breakfast", ...r.features].map((f) => (
+                    <li key={f} className="flex items-center gap-2">
+                      <span className="size-1.5 shrink-0 rounded-full bg-accent" />
+                      {f}
+                    </li>
+                  ))}
                 </ul>
                 <a
                   href={BOOK_URL}
