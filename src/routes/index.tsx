@@ -44,8 +44,6 @@ import { ClickSpark } from "@/components/ClickSpark";
 import { ShinyText } from "@/components/ShinyText";
 import { MarqueeStrip } from "@/components/MarqueeStrip";
 import { Gallery } from "@/components/Gallery";
-import gallery1 from "@/assets/gallery-1.png";
-import gallery2 from "@/assets/gallery-2.png";
 import gallery3 from "@/assets/gallery-3.png";
 import gallery4 from "@/assets/gallery-4.png";
 import gallery5 from "@/assets/gallery-5.png";
@@ -58,8 +56,6 @@ import gallery10 from "@/assets/gallery-10.png";
 const BOOK_URL = "https://www.hostelworld.com/hostels/p/313345/the-bearded-dad-hostel/";
 
 const galleryImages = [
-  { src: gallery1, alt: "Garden terrace lit up at night", caption: "Our garden comes alive after dark — grab a cold one and stay a while." },
-  { src: gallery2, alt: "Bar and outdoor seating area", caption: "Cold drinks, warm company, and a view worth lingering over." },
   { src: gallery3, alt: "Interior lounge with chandelier", caption: "A chandelier, cosy corners, and doors that lead to somewhere good." },
   { src: gallery4, alt: "Common lounge with bean bags and chandelier", caption: "Drop your bags, sink into a bean bag, and make yourself at home." },
   { src: gallery5, alt: "Shared kitchen with wooden countertop", caption: "A fully equipped kitchen — cook up a feast or just brew a coffee." },
