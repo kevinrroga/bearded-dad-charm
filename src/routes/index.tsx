@@ -197,24 +197,27 @@ const rooms = [
 const faqs = [
   {
     q: "What are the check-in hours?",
-    a: "Check-in runs 13:00 to 00:00. Late check-in after 2AM with prior notice carries a €5 charge. Arriving after 1AM without notice is also charged.",
+    a: "Check-in is from 12:00 to 00:00. Late arrivals after 01:30 with prior notice carry a €5 (500 lek) charge. Arriving after 01:00 without notifying us in advance may incur additional fees.",
   },
-  { q: "When is check-out?", a: "Check-out is before 11:00." },
+  { q: "When is check-out?", a: "Check-out is before 11:00. Reception is open 08:00 to 01:00 if you need assistance." },
   {
     q: "What is the cancellation policy?",
-    a: "Free cancellation up to 2 days before arrival. A late cancellation or no-show means the first night is charged.",
+    a: "Free cancellation up to 1 day before arrival. A late cancellation or no-show will be charged the full price of your stay.",
   },
   {
     q: "How can I pay?",
-    a: "Cash or card upon arrival. Taxes are not included in the room rate.",
+    a: "Payment is made upon arrival, by cash or card. Taxes are not included in the listed room rates.",
   },
-  { q: "Is breakfast included?", a: "Yes, a continental breakfast is included every day." },
-  { q: "Is there a minimum age?", a: "Guests must be at least 18 years old." },
+  { q: "Is breakfast included?", a: "Yes, a free breakfast is included with every stay, every day." },
+  { q: "Is there a minimum age?", a: "Yes, guests must be at least 18 years old." },
+  {
+    q: "Is smoking allowed?",
+    a: "The hostel is a non-smoking facility. Please smoke only in designated outdoor areas.",
+  },
   {
     q: "Are pets allowed?",
-    a: "No pets allowed, except Nesha the hostel dog, who already lives here.",
+    a: "No outside pets are allowed. Nesha, our resident hostel dog, already has the place covered.",
   },
-  { q: "What are reception hours?", a: "Reception is open 08:00 to 01:00." },
 ];
 
 const scores = [
