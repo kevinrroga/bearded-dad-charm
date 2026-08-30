@@ -31,6 +31,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
+import { BeardedDadSketch } from "@/components/BeardedDadSketch";
 import storyImg from "@/assets/story.jpg";
 import { Reveal } from "@/components/Reveal";
 
