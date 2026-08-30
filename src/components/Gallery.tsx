@@ -5,6 +5,7 @@ import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 export interface GalleryImage {
   src: string;
   alt: string;
+  caption?: string;
 }
 
 interface ImageCardProps {
@@ -132,9 +133,16 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
             <ChevronRight className="size-6" />
           </button>
 
-          <p className="absolute bottom-5 text-sm text-white/50">
-            {lightboxIndex + 1} / {images.length}
-          </p>
+          <div className="absolute bottom-5 flex flex-col items-center gap-1">
+            {images[lightboxIndex].caption && (
+              <p className="text-sm text-white/90 font-medium drop-shadow">
+                {images[lightboxIndex].caption}
+              </p>
+            )}
+            <p className="text-xs text-white/40">
+              {lightboxIndex + 1} / {images.length}
+            </p>
+          </div>
         </div>
       )}
     </>
