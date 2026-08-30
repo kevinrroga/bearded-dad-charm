@@ -33,7 +33,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { BeardedDadSketch } from "@/components/BeardedDadSketch";
-import { AnimatedBeardedDad } from "@/components/AnimatedBeardedDad";
+import { GardenScene } from "@/components/GardenScene";
 import storyImg from "@/assets/story.jpg";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
@@ -51,6 +51,9 @@ import gallery4 from "@/assets/gallery-4.png";
 import gallery5 from "@/assets/gallery-5.png";
 import gallery6 from "@/assets/gallery-6.png";
 import gallery7 from "@/assets/gallery-7.png";
+import gallery8 from "@/assets/gallery-8.webp";
+import gallery9 from "@/assets/gallery-9.png";
+import gallery10 from "@/assets/gallery-10.png";
 
 const BOOK_URL = "https://www.hostelworld.com/hostels/p/313345/the-bearded-dad-hostel/";
 
@@ -62,6 +65,9 @@ const galleryImages = [
   { src: gallery5, alt: "Shared kitchen with wooden countertop", caption: "A fully equipped kitchen — cook up a feast or just brew a coffee." },
   { src: gallery6, alt: "Bunk beds with privacy curtains and lockers", caption: "Numbered bunks, privacy curtains, and your own lock. Sleep easy." },
   { src: gallery7, alt: "Outdoor garden at night with wooden spool tables", caption: "String lights, spool tables, and cold Elbar beer under the stars." },
+  { src: gallery8, alt: "Garden entrance at night with coloured lights and red fence", caption: "Step through the gate — the night is just getting started." },
+  { src: gallery9, alt: "Outdoor seating area with spool tables and Elbar umbrella", caption: "Pallet seats, candles on the table, and nowhere else to be." },
+  { src: gallery10, alt: "Terrace with TV, yellow tyre stools and pallet benches", caption: "TV on the wall, tyres for seats — comfort on our own terms." },
 ];
 const MAP_EMBED =
   "https://www.google.com/maps?q=41.3343197,19.8154374&z=16&output=embed";
@@ -335,8 +341,8 @@ function Index() {
       {/* HERO */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden">
         <img
-          src={gallery7}
-          alt="The Bearded Dad Hostel outdoor garden at night with string lights and wooden tables"
+          src={gallery8}
+          alt="The Bearded Dad Hostel garden entrance at night with colourful lights and red fence"
           width={1600}
           height={1200}
           className="absolute inset-0 size-full object-cover"
@@ -397,7 +403,7 @@ function Index() {
             <div className="relative">
               {/* glow ring behind the sketch */}
               <div className="absolute inset-0 scale-110 rounded-full bg-accent/10 blur-3xl" />
-              <AnimatedBeardedDad className="relative h-[420px] w-[420px] text-primary-foreground drop-shadow-2xl" />
+              <GardenScene className="relative h-[400px] w-[400px] drop-shadow-2xl" />
             </div>
           </div>
         </div>
