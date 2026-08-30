@@ -318,11 +318,14 @@ function Index() {
             </div>
           </Reveal>
 
-          <Reveal delay={80} className="flex flex-col justify-center">
+          <Reveal delay={80} className="relative flex flex-col justify-center">
+            <BeardedDadSketch
+              className="pointer-events-none absolute -top-10 right-2 h-28 w-28 -rotate-6 text-primary/70 sm:h-36 sm:w-36"
+            />
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
               Our story
             </p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+            <h2 className="mt-3 max-w-sm font-display text-3xl sm:text-4xl">
               It was somebody's childhood home first.
             </h2>
             <div className="mt-4 space-y-4 text-muted-foreground">
