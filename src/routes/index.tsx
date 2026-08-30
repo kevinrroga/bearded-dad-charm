@@ -30,6 +30,7 @@ import {
   Plus,
   ArrowRight,
   Moon,
+  Trophy,
 } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import { BeardedDadSketch } from "@/components/BeardedDadSketch";
@@ -388,6 +389,56 @@ function Index() {
               ))}
             </ul>
           </Reveal>
+        </div>
+      </section>
+
+      {/* AWARDS */}
+      <section className="bg-primary py-14 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-accent">Recognition</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+              <ShinyText
+                text="Award-Winning Hospitality"
+                color="rgba(245, 238, 220, 0.92)"
+                shineColor="#D48B2E"
+                speed={4}
+              />
+            </h2>
+            <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/65">
+              The Hoscars are Hostelworld's highest honour — voted by real guests worldwide.
+              Two years running, The Bearded Dad has been recognised as one of Albania's best.
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
+            {/* 2025 — Gold */}
+            <div className="card-spotlight w-full max-w-xs rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+              <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-accent/20">
+                <Trophy className="size-8 text-accent" />
+              </div>
+              <p className="mt-5 font-display text-6xl font-semibold text-accent">#1</p>
+              <p className="mt-1 text-lg font-semibold text-primary-foreground">in Albania</p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
+                2025 Hoscar Country Winner
+              </p>
+            </div>
+
+            {/* Divider on desktop */}
+            <div className="hidden h-32 w-px bg-white/10 sm:block" />
+
+            {/* 2026 — Bronze */}
+            <div className="card-spotlight w-full max-w-xs rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+              <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-accent/10">
+                <Trophy className="size-8 text-accent/70" />
+              </div>
+              <p className="mt-5 font-display text-6xl font-semibold text-accent/80">#3</p>
+              <p className="mt-1 text-lg font-semibold text-primary-foreground">in Albania</p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
+                2026 Hoscar Country Winner
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
