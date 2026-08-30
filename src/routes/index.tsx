@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Bike,
   Bus,
@@ -29,6 +29,7 @@ import {
   Minus,
   Plus,
   ArrowRight,
+  Moon,
 } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import { BeardedDadSketch } from "@/components/BeardedDadSketch";
@@ -41,8 +42,18 @@ import { TiltCard } from "@/components/TiltCard";
 import { ClickSpark } from "@/components/ClickSpark";
 import { ShinyText } from "@/components/ShinyText";
 import { MarqueeStrip } from "@/components/MarqueeStrip";
+import { Gallery } from "@/components/Gallery";
+import gallery1 from "@/assets/gallery-1.png";
+import gallery2 from "@/assets/gallery-2.png";
+import gallery3 from "@/assets/gallery-3.png";
 
 const BOOK_URL = "https://www.hostelworld.com/hostels/p/313345/the-bearded-dad-hostel/";
+
+const galleryImages = [
+  { src: gallery1, alt: "The Bearded Dad Hostel garden lit up at night" },
+  { src: gallery2, alt: "Bar and outdoor seating area" },
+  { src: gallery3, alt: "Interior lounge with rooms and chandelier" },
+];
 const MAP_EMBED =
   "https://www.google.com/maps?q=41.3343197,19.8154374&z=16&output=embed";
 const DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=41.3343197,19.8154374";
@@ -72,6 +83,7 @@ export const Route = createFileRoute("/")({
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Rooms", href: "#rooms" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Events", href: "#events" },
   { label: "Location", href: "#location" },
   { label: "FAQ", href: "#faq" },
@@ -189,6 +201,24 @@ function Wordmark({ tone = "default" }: { tone?: "default" | "light" }) {
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = saved === 'dark' || (!saved && prefersDark);
+    setIsDark(initial);
+    document.documentElement.classList.toggle('dark', initial);
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDark((prev) => {
+      const next = !prev;
+      document.documentElement.classList.toggle('dark', next);
+      localStorage.setItem('theme', next ? 'dark' : 'light');
+      return next;
+    });
+  };
 
   return (
     <ClickSpark sparkColor="#D48B2E" sparkSize={10} sparkRadius={22} sparkCount={8} duration={500}>
@@ -217,6 +247,13 @@ function Index() {
             >
               <ShinyText text="Book Now" color="rgba(245, 238, 220, 0.9)" shineColor="#ffffff" speed={3} />
             </a>
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle dark mode"
+              className="grid size-9 place-items-center rounded-full border border-border transition-colors hover:bg-secondary"
+            >
+              {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            </button>
             <button
               onClick={() => setMenuOpen((v) => !v)}
               aria-label="Toggle menu"
@@ -536,6 +573,15 @@ function Index() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* GALLERY */}
+      <section id="gallery" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <Reveal>
+          <p className="text-xs font-semibold uppercase tracking-widest text-accent">Gallery</p>
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl">See the space</h2>
+        </Reveal>
+        <Gallery images={galleryImages} />
       </section>
 
       {/* LOCATION */}
