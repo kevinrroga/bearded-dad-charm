@@ -406,8 +406,9 @@ function Index() {
               />
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/65">
-              The Hoscars are Hostelworld's highest honour — voted by real guests worldwide.
-              Two years running, The Bearded Dad has been recognised as one of Albania's best.
+              The Hoscars are Hostelworld's annual celebration of the world's finest hostels —
+              voted entirely by travellers. Two years in a row, guests chose The Bearded Dad
+              as one of the best in Albania.
             </p>
           </div>
 
@@ -422,10 +423,11 @@ function Index() {
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
                 2025 Hoscar Country Winner
               </p>
+              <p className="mt-2 text-xs text-primary-foreground/40">Voted by travellers · Hostelworld</p>
             </div>
 
             {/* Divider on desktop */}
-            <div className="hidden h-32 w-px bg-white/10 sm:block" />
+            <div className="hidden h-36 w-px bg-white/10 sm:block" />
 
             {/* 2026 — Bronze */}
             <div className="card-spotlight w-full max-w-xs rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
@@ -437,8 +439,20 @@ function Index() {
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
                 2026 Hoscar Country Winner
               </p>
+              <p className="mt-2 text-xs text-primary-foreground/40">Voted by travellers · Hostelworld</p>
             </div>
           </div>
+
+          <p className="mt-10 text-center text-xs text-primary-foreground/35">
+            <a
+              href="https://global.hostelworld.com/hoscars"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-2 hover:text-primary-foreground/60 transition-colors"
+            >
+              Learn more about the Hoscar Awards
+            </a>
+          </p>
         </div>
       </section>
 
