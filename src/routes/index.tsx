@@ -32,8 +32,8 @@ import {
   Moon,
   Trophy,
 } from "lucide-react";
-import heroImg from "@/assets/hero.jpg";
 import { BeardedDadSketch } from "@/components/BeardedDadSketch";
+import { AnimatedBeardedDad } from "@/components/AnimatedBeardedDad";
 import storyImg from "@/assets/story.jpg";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
@@ -333,16 +333,18 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative flex min-h-[92vh] items-center">
+      <section className="relative flex min-h-[92vh] items-center overflow-hidden">
         <img
-          src={heroImg}
-          alt="The Bearded Dad Hostel villa and garden patio at dusk in Tirana"
+          src={gallery7}
+          alt="The Bearded Dad Hostel outdoor garden at night with string lights and wooden tables"
           width={1600}
-          height={1104}
+          height={1200}
           className="absolute inset-0 size-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/30" />
-        <div className="relative mx-auto w-full max-w-6xl px-4 py-24 sm:px-6">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
+
+        <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 px-4 py-24 sm:px-6 lg:grid-cols-2">
+          {/* Left — text */}
           <Reveal className="max-w-2xl">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/90 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent-foreground">
               <Star className="size-3.5" /> Tirana, Albania
@@ -389,6 +391,15 @@ function Index() {
               ))}
             </ul>
           </Reveal>
+
+          {/* Right — animated sketch */}
+          <div className="hidden items-center justify-center lg:flex">
+            <div className="relative">
+              {/* glow ring behind the sketch */}
+              <div className="absolute inset-0 scale-110 rounded-full bg-accent/10 blur-3xl" />
+              <AnimatedBeardedDad className="relative h-[420px] w-[420px] text-primary-foreground drop-shadow-2xl" />
+            </div>
+          </div>
         </div>
       </section>
 
