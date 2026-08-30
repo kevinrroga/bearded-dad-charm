@@ -418,7 +418,7 @@ function Index() {
               <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-accent/20">
                 <Trophy className="size-8 text-accent" />
               </div>
-              <p className="mt-5 font-display text-6xl font-semibold text-accent">#1</p>
+              <p className="mt-5 font-display text-6xl font-semibold text-accent">#2</p>
               <p className="mt-1 text-lg font-semibold text-primary-foreground">in Albania</p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
                 2025 Hoscar Country Winner
