@@ -34,6 +34,13 @@ import heroImg from "@/assets/hero.jpg";
 import { BeardedDadSketch } from "@/components/BeardedDadSketch";
 import storyImg from "@/assets/story.jpg";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
+import { BlurText } from "@/components/BlurText";
+import { CountUp } from "@/components/CountUp";
+import { TiltCard } from "@/components/TiltCard";
+import { ClickSpark } from "@/components/ClickSpark";
+import { ShinyText } from "@/components/ShinyText";
+import { MarqueeStrip } from "@/components/MarqueeStrip";
 
 const BOOK_URL = "https://www.hostelworld.com/hostels/p/313345/the-bearded-dad-hostel/";
 const MAP_EMBED =
@@ -43,13 +50,13 @@ const DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=41.334319
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "The Bearded Dad Hostel — Family-Run Hostel in Tirana, Albania" },
+      { title: "The Bearded Dad Hostel | Family-Run Hostel in Tirana, Albania" },
       {
         name: "description",
         content:
           "A family home turned social hostel in central Tirana. Rated 9.4 Superb on Hostelworld. Free breakfast, free bikes, nightly family dinners and a dog named Nesha.",
       },
-      { property: "og:title", content: "The Bearded Dad Hostel — Tirana, Albania" },
+      { property: "og:title", content: "The Bearded Dad Hostel, Tirana, Albania" },
       {
         property: "og:description",
         content:
@@ -89,7 +96,7 @@ const amenities = [
 ];
 
 const events = [
-  { icon: Utensils, title: "Family Dinner", text: "Nightly · €7 — everyone at one long table." },
+  { icon: Utensils, title: "Family Dinner", text: "Nightly · €7. Everyone at one long table." },
   { icon: Beer, title: "BBQ and Beers", text: "Grill fired up in the garden." },
   { icon: Martini, title: "Bar / Pub Crawl", text: "Tirana's nightlife, with locals leading." },
   { icon: Mountain, title: "Bovilla Lake Hiking Tour", text: "Day trip to the turquoise lake." },
@@ -107,7 +114,7 @@ const reviews = [
   },
   {
     quote:
-      "The best hostel I've ever stayed in — it's so social and feels like home! I would recommend to anyone and would definitely be back when I'm in Tirana.",
+      "The best hostel I've ever stayed in. It's so social and feels like home! I would recommend it to anyone and would definitely be back when I'm in Tirana.",
     name: "Lexi",
     meta: "Female 18-24 · Australia",
   },
@@ -129,7 +136,7 @@ const rooms = [
 const faqs = [
   {
     q: "What are the check-in hours?",
-    a: "Check-in runs 13:00–00:00. Late check-in after 2AM with prior notice carries a €5 charge. Arriving after 1AM without notice is also charged.",
+    a: "Check-in runs 13:00 to 00:00. Late check-in after 2AM with prior notice carries a €5 charge. Arriving after 1AM without notice is also charged.",
   },
   { q: "When is check-out?", a: "Check-out is before 11:00." },
   {
@@ -140,13 +147,13 @@ const faqs = [
     q: "How can I pay?",
     a: "Cash or card upon arrival. Taxes are not included in the room rate.",
   },
-  { q: "Is breakfast included?", a: "Yes — a continental breakfast is included every day." },
+  { q: "Is breakfast included?", a: "Yes, a continental breakfast is included every day." },
   { q: "Is there a minimum age?", a: "Guests must be at least 18 years old." },
   {
     q: "Are pets allowed?",
-    a: "No pets, sorry — except Nesha, the hostel dog, who already lives here.",
+    a: "No pets allowed, except Nesha the hostel dog, who already lives here.",
   },
-  { q: "What are reception hours?", a: "Reception is open 08:00–01:00." },
+  { q: "What are reception hours?", a: "Reception is open 08:00 to 01:00." },
 ];
 
 const scores = [
@@ -184,6 +191,7 @@ function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
+    <ClickSpark sparkColor="#D48B2E" sparkSize={10} sparkRadius={22} sparkCount={8} duration={500}>
     <div id="top" className="bg-background text-foreground">
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur">
@@ -205,9 +213,9 @@ function Index() {
               href={BOOK_URL}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              className="rounded-full bg-primary px-4 py-2 text-sm font-semibold transition-colors hover:bg-primary/90"
             >
-              Book Now
+              <ShinyText text="Book Now" color="rgba(245, 238, 220, 0.9)" shineColor="#ffffff" speed={3} />
             </a>
             <button
               onClick={() => setMenuOpen((v) => !v)}
@@ -249,12 +257,15 @@ function Index() {
             <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/90 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent-foreground">
               <Star className="size-3.5" /> Tirana, Albania
             </p>
-            <h1 className="font-display text-4xl leading-[1.05] text-primary-foreground sm:text-6xl">
-              A family home. Now yours for a few nights.
-            </h1>
+            <BlurText
+              text="A family home. Now yours for a few nights."
+              className="font-display text-4xl leading-[1.05] text-primary-foreground sm:text-6xl"
+              delay={120}
+              direction="bottom"
+            />
             <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 sm:text-lg">
-              A 2-story villa tucked into a quiet alley off Bulevardi Zogu I — steps from
-              Skanderbeg Square, but far enough to actually sleep. Breakfast on the patio,
+              A 2-story villa tucked into a quiet alley off Bulevardi Zogu I, steps from
+              Skanderbeg Square but far enough to actually sleep. Breakfast on the patio,
               family dinner at the long table, Nesha the dog somewhere underfoot.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -291,6 +302,9 @@ function Index() {
         </div>
       </section>
 
+      {/* MARQUEE */}
+      <MarqueeStrip />
+
       {/* STORY */}
       <section id="about" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="grid items-stretch gap-8 lg:grid-cols-2">
@@ -305,15 +319,15 @@ function Index() {
             />
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <p className="font-display text-3xl text-accent">9.4</p>
+                <CountUp to={9.4} from={0} duration={2} className="font-display text-3xl text-accent" />
                 <p className="text-xs uppercase tracking-wide opacity-80">Superb</p>
               </div>
               <div>
-                <p className="font-display text-3xl text-accent">674</p>
+                <CountUp to={674} from={0} duration={2} className="font-display text-3xl text-accent" />
                 <p className="text-xs uppercase tracking-wide opacity-80">Reviews</p>
               </div>
               <div>
-                <p className="font-display text-3xl text-accent">9.7</p>
+                <CountUp to={9.7} from={0} duration={2} className="font-display text-3xl text-accent" />
                 <p className="text-xs uppercase tracking-wide opacity-80">Staff</p>
               </div>
             </div>
@@ -331,8 +345,8 @@ function Index() {
             </h2>
             <div className="mt-4 space-y-4 text-muted-foreground">
               <p>
-                Dolsin and his family took his wife's childhood home — a two-story villa on
-                Rruga Hamid Shijaku — and slowly turned it into a hostel. Nothing was gutted.
+                Dolsin and his family took his wife's childhood home, a two-story villa on
+                Rruga Hamid Shijaku, and slowly turned it into a hostel. Nothing was gutted.
                 The kitchen is still a kitchen, the garden is still the garden, and the family
                 is still here.
               </p>
@@ -377,11 +391,13 @@ function Index() {
                 as="li"
                 key={a.title}
                 delay={(i % 3) * 60}
-                className="rounded-2xl border border-border bg-card p-4 transition-colors hover:border-accent"
+                className="rounded-2xl border border-border bg-card transition-colors hover:border-accent"
               >
-                <a.icon className="size-5 text-accent" />
-                <h3 className="mt-3 text-base font-semibold">{a.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{a.text}</p>
+                <SpotlightCard className="h-full rounded-2xl p-4">
+                  <a.icon className="size-5 text-accent" />
+                  <h3 className="mt-3 text-base font-semibold">{a.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{a.text}</p>
+                </SpotlightCard>
               </Reveal>
             ))}
           </ul>
@@ -455,9 +471,9 @@ function Index() {
         </Reveal>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {reviews.map((r, i) => (
+            <TiltCard key={r.name + i}>
             <Reveal
               as="article"
-              key={r.name + i}
               delay={i * 80}
               className="flex flex-col rounded-3xl border border-border bg-card p-6"
             >
@@ -472,6 +488,7 @@ function Index() {
                 <p className="text-muted-foreground">{r.meta}</p>
               </footer>
             </Reveal>
+            </TiltCard>
           ))}
         </div>
       </section>
@@ -617,11 +634,15 @@ function Index() {
           </div>
           <div className="text-sm">
             <h3 className="font-display text-lg">Find us</h3>
-            <p className="mt-3 text-primary-foreground/80">
-              Rruga Hamid Shijaku, Vila 13
-              <br />
-              Tirana, Albania
-            </p>
+            <a
+              href={DIRECTIONS}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 flex items-start gap-2 text-primary-foreground/80 hover:text-accent"
+            >
+              <MapPin className="mt-0.5 size-4 shrink-0" />
+              <span>Rruga Hamid Shijaku, Vila 13<br />Tirana, Albania</span>
+            </a>
             <a
               href="mailto:beardeddadhostel@gmail.com"
               className="mt-3 flex items-center gap-2 text-primary-foreground/80 hover:text-accent"
@@ -654,7 +675,7 @@ function Index() {
               Booking.com
             </a>
             <p className="mt-4 text-primary-foreground/60">
-              Reception 08:00–01:00 · Check-in from 13:00
+              Reception 08:00 to 01:00 · Check-in from 13:00
             </p>
           </div>
         </div>
@@ -663,5 +684,6 @@ function Index() {
         </div>
       </footer>
     </div>
+    </ClickSpark>
   );
 }
