@@ -29,23 +29,27 @@ export function BeardedDadSketch({ className }: { className?: string }) {
       <path className={s} strokeWidth="2.5" strokeLinecap="round" d="M110 128c-6 2-14 1-21-4-2 6 2 10 9 11M110 128c6 2 14 1 21-4 2 6-2 10-9 11" />
       {/* smile peeking through */}
       <path className={s} strokeWidth="2.5" strokeLinecap="round" d="M99 138c6 5 16 5 22 0" />
-      {/* beard mass */}
-      <path className={s} strokeWidth="3" strokeLinecap="round" d="M64 112c-2 20 2 42 12 58 8 13 20 22 34 23 15 1 28-8 36-21 10-17 14-39 12-60" />
+      {/* side hair behind ears */}
+      <path className={s} strokeWidth="2.5" strokeLinecap="round" d="M64 70c-4 10-5 20-3 30M156 70c4 10 5 20 3 30" opacity=".7" />
+      {/* beard mass — bushy outline with zigzag edge */}
+      <path className={s} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M62 108c-3 18 0 38 7 54l-6 2 8 6-4 5 9 3-2 6 10 2 1 6 10 1 3 6 9-1 4 5 8-3 5 4 7-4 6 3 6-6 8 1 5-7 8-2 3-8 8-4 1-9 7-6-2-9 5-8c3-14 4-28 2-42" />
       {/* beard sketchy strokes */}
-      <g strokeWidth="1.6" strokeLinecap="round" opacity=".55" className={s}>
-        <path d="M74 130c1 14 4 26 10 36" />
-        <path d="M88 140c1 14 4 26 9 38" />
-        <path d="M104 146c0 14 1 28 3 40" />
-        <path d="M122 145c0 15-1 29-4 40" />
-        <path d="M138 138c-1 14-4 27-10 37" />
-        <path d="M70 150c6 4 12 5 18 4M142 148c-6 5-13 6-20 4" />
-        <path d="M84 176c8 6 18 9 27 8M96 188c8 3 17 3 25-1" />
+      <g strokeWidth="1.8" strokeLinecap="round" opacity=".6" className={s}>
+        <path d="M74 132c0 16 3 30 9 42" />
+        <path d="M88 142c0 16 3 30 8 44" />
+        <path d="M104 148c0 16 1 32 3 46" />
+        <path d="M120 147c0 16-1 32-4 45" />
+        <path d="M136 140c-1 16-4 30-10 42" />
+        <path d="M150 128c0 14-3 28-8 40" />
+        <path d="M70 158c5 3 11 4 17 3M140 156c6 3 12 3 17 0" />
+        <path d="M84 182c7 5 15 8 24 8M100 194c8 3 17 2 24-2" />
       </g>
       {/* stray pencil lines for texture */}
       <g strokeWidth="1.2" strokeLinecap="round" opacity=".3" className={s}>
-        <path d="M58 180c4 6 10 11 16 14" />
-        <path d="M162 178c-4 7-10 12-17 15" />
-        <path d="M110 210c2 0 4 0 6-1" />
+        <path d="M56 184c4 7 10 13 17 17" />
+        <path d="M164 182c-4 8-11 14-18 17" />
+        <path d="M104 214c3 1 7 1 10 0" />
+        <path d="M76 204c4 3 9 6 14 7" />
       </g>
     </svg>
   );
