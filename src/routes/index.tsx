@@ -44,6 +44,9 @@ import storyImg from "@/assets/story-real.jpg";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { BlurText } from "@/components/BlurText";
+import RotatingText from "@/components/RotatingText";
+import DecryptedText from "@/components/DecryptedText";
+import StarBorder from "@/components/StarBorder";
 import { CountUp } from "@/components/CountUp";
 import { TiltCard } from "@/components/TiltCard";
 import { ClickSpark } from "@/components/ClickSpark";
@@ -391,7 +394,7 @@ function Wordmark({ tone = "default" }: { tone?: "default" | "light" }) {
       >
         <Home className="size-4" />
       </span>
-      The Bearded Dad Hostel
+      <span className="hidden sm:inline">The Bearded Dad Hostel</span>
     </a>
   );
 }
@@ -487,7 +490,7 @@ function Index() {
           fetchPriority="high"
           className="absolute inset-0 size-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/35 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/50 sm:to-black/10" />
 
         <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 px-4 py-24 sm:px-6 lg:grid-cols-2">
           {/* Left — text */}
@@ -495,26 +498,42 @@ function Index() {
             <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/90 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent-foreground">
               <Star className="size-3.5" /> Tirana, Albania
             </p>
-            <BlurText
-              text="A family home. Now yours for a few nights."
-              className="font-display text-4xl leading-[1.05] text-primary-foreground sm:text-6xl"
-              delay={120}
-              direction="bottom"
-            />
+            <h1 className="font-display text-4xl leading-[1.1] text-primary-foreground sm:text-6xl">
+              {"A "}
+              <span className="relative inline-block overflow-hidden align-bottom pb-1">
+                <RotatingText
+                  texts={["family home", "social space", "warm welcome", "Tirana hideout"]}
+                  mainClassName="text-accent"
+                  splitBy="words"
+                  staggerDuration={0.07}
+                  staggerFrom="first"
+                  rotationInterval={3000}
+                  transition={{ type: "spring", damping: 28, stiffness: 260 }}
+                  initial={{ y: "110%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "-110%", opacity: 0 }}
+                />
+              </span>
+              {"."}<br />
+              {"Now yours for a few nights."}
+            </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 sm:text-lg">
               A 2-story villa tucked into a quiet alley off Bulevardi Zogu I, steps from
               Skanderbeg Square but far enough to actually sleep. Breakfast on the patio,
               family dinner at the long table, Nesha the dog somewhere underfoot.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a
+              <StarBorder
+                as="a"
                 href={BOOK_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5"
+                color="#D48B2E"
+                speed="5s"
+                innerClassName="bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 block"
               >
                 Check availability
-              </a>
+              </StarBorder>
               <a
                 href="#about"
                 className="rounded-full border border-primary-foreground/50 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
@@ -550,7 +569,8 @@ function Index() {
       </section>
 
       {/* AWARDS */}
-      <section className="bg-primary py-14 sm:py-20">
+      <section className="relative bg-primary py-14 sm:py-20">
+        <div className="awards-shimmer pointer-events-none absolute inset-0" />
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">Recognition</p>
@@ -575,7 +595,18 @@ function Index() {
               <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-accent/20">
                 <Trophy className="size-8 text-accent" />
               </div>
-              <p className="mt-5 font-display text-6xl font-semibold text-accent">#2</p>
+              <p className="mt-5 font-display text-6xl font-semibold text-accent">
+                <DecryptedText
+                  text="#2"
+                  animateOn="view"
+                  sequential
+                  revealDirection="start"
+                  speed={60}
+                  characters="0123456789#@!*"
+                  className="text-accent"
+                  encryptedClassName="text-accent/40"
+                />
+              </p>
               <p className="mt-1 text-lg font-semibold text-primary-foreground">in Albania</p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
                 2025 Hoscar Country Winner
@@ -591,7 +622,18 @@ function Index() {
               <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-accent/10">
                 <Trophy className="size-8 text-accent/70" />
               </div>
-              <p className="mt-5 font-display text-6xl font-semibold text-accent/80">#3</p>
+              <p className="mt-5 font-display text-6xl font-semibold text-accent/80">
+                <DecryptedText
+                  text="#3"
+                  animateOn="view"
+                  sequential
+                  revealDirection="start"
+                  speed={60}
+                  characters="0123456789#@!*"
+                  className="text-accent/80"
+                  encryptedClassName="text-accent/30"
+                />
+              </p>
               <p className="mt-1 text-lg font-semibold text-primary-foreground">in Albania</p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
                 2026 Hoscar Country Winner
@@ -646,7 +688,7 @@ function Index() {
 
           <Reveal delay={80} className="relative flex flex-col justify-center">
             <BeardedDadSketch
-              className="pointer-events-none absolute -top-10 right-2 h-28 w-28 -rotate-6 text-primary/70 sm:h-36 sm:w-36"
+              className="pointer-events-none absolute -top-10 right-2 hidden h-36 w-36 -rotate-6 text-primary/70 sm:block"
             />
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
               Our story
@@ -700,7 +742,7 @@ function Index() {
             <img
               src={illusWaving}
               alt="Illustrated bearded dad waving hello"
-              className="h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden"
+              className="hidden h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden sm:block"
             />
           </div>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -737,14 +779,18 @@ function Index() {
               4pm and have a table full of people by 8pm. Come down for the family dinner, stay
               for the karaoke, sign up for the lake hike in the morning.
             </p>
-            <a
+            <StarBorder
+              as="a"
               href={BOOK_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground"
+              className="mt-6"
+              color="#D48B2E"
+              speed="5s"
+              innerClassName="bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground inline-flex items-center gap-2"
             >
               Book your bed <ArrowRight className="size-4" />
-            </a>
+            </StarBorder>
           </Reveal>
           <ul className="divide-y divide-primary-foreground/15">
             {events.map((e, i) => (
@@ -781,7 +827,7 @@ function Index() {
           <img
             src={illusLaughing}
             alt="Illustrated bearded dad laughing with sparkles"
-            className="h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden"
+            className="hidden h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden sm:block"
           />
           <div className="flex gap-2 text-sm font-semibold">
             <span className="rounded-full bg-primary px-4 py-2 text-primary-foreground">
@@ -831,7 +877,7 @@ function Index() {
             <img
               src={illusCoffee}
               alt="Illustrated bearded dad holding a coffee cup"
-              className="h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden"
+              className="hidden h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden sm:block"
             />
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -964,7 +1010,7 @@ function Index() {
           <img
             src={illusHappy}
             alt="Illustrated bearded dad laughing with head back"
-            className="h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden"
+            className="hidden h-32 w-32 shrink-0 object-contain mix-blend-multiply dark:hidden sm:block"
           />
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -995,7 +1041,7 @@ function Index() {
           <Reveal className="relative">
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">FAQ</p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">Good to know</h2>
-            <BeardStrokeAnimation className="pointer-events-none absolute -top-6 right-0 h-32 w-32 text-primary/60 sm:h-40 sm:w-40" />
+            <BeardStrokeAnimation className="pointer-events-none absolute -top-6 right-0 hidden h-40 w-40 text-primary/60 sm:block" />
           </Reveal>
           <div className="mt-8 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-card">
             {faqs.map((f, i) => (
