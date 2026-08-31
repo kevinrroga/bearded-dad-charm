@@ -699,7 +699,7 @@ function Index() {
             <img
               src={illusWaving}
               alt="Illustrated bearded dad waving hello"
-              className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
+              className="h-32 w-32 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md"
             />
           </div>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -780,7 +780,7 @@ function Index() {
           <img
             src={illusLaughing}
             alt="Illustrated bearded dad laughing with sparkles"
-            className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
+            className="h-32 w-32 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md"
           />
           <div className="flex gap-2 text-sm font-semibold">
             <span className="rounded-full bg-primary px-4 py-2 text-primary-foreground">
@@ -830,7 +830,7 @@ function Index() {
             <img
               src={illusCoffee}
               alt="Illustrated bearded dad holding a coffee cup"
-              className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
+              className="h-32 w-32 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md"
             />
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -950,7 +950,7 @@ function Index() {
           <img
             src={illusHappy}
             alt="Illustrated bearded dad laughing with head back"
-            className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
+            className="h-32 w-32 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md"
           />
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
