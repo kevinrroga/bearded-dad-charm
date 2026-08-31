@@ -880,8 +880,8 @@ function Index() {
       {/* GALLERY */}
       <section id="gallery">
         <ScrollExpand
-          src={gallery7}
-          alt="Outdoor garden at night with string lights and spool tables"
+          src={gallery9}
+          alt="Outdoor seating area with spool tables at The Bearded Dad Hostel"
           title="See the space"
           scrollHint="scroll to explore"
           startWidth={50}
