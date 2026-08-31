@@ -31,10 +31,15 @@ import {
   ArrowRight,
   Moon,
   Trophy,
+  MessageCircle,
+  Landmark,
+  ShoppingBasket,
+  Waves,
 } from "lucide-react";
 import { BeardedDadSketch } from "@/components/BeardedDadSketch";
+import { BeardStrokeAnimation } from "@/components/BeardStrokeAnimation";
 import { GardenScene } from "@/components/GardenScene";
-import storyImg from "@/assets/story.jpg";
+import storyImg from "@/assets/story-real.jpg";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { BlurText } from "@/components/BlurText";
@@ -52,40 +57,138 @@ import gallery7 from "@/assets/gallery-7.png";
 import gallery8 from "@/assets/gallery-8.webp";
 import gallery9 from "@/assets/gallery-9.png";
 import gallery10 from "@/assets/gallery-10.png";
+import gallery11 from "@/assets/gallery-11.jpg";
+import illusWaving from "@/assets/illus-waving.png";
+import illusCoffee from "@/assets/illus-coffee.png";
+import illusLaughing from "@/assets/illus-laughing.png";
+import illusHappy from "@/assets/illus-happy.png";
 
 const BOOK_URL = "https://www.hostelworld.com/hostels/p/313345/the-bearded-dad-hostel/";
+const WHATSAPP_URL = "https://wa.me/355695539156";
+// Update SITE_URL to your live domain before deploying
+const SITE_URL = "https://beardeddadhostel.com";
 
 const galleryImages = [
   { src: gallery3, alt: "Interior lounge with chandelier", caption: "A chandelier, cosy corners, and doors that lead to somewhere good." },
   { src: gallery4, alt: "Common lounge with bean bags and chandelier", caption: "Drop your bags, sink into a bean bag, and make yourself at home." },
-  { src: gallery5, alt: "Shared kitchen with wooden countertop", caption: "A fully equipped kitchen — cook up a feast or just brew a coffee." },
+  { src: gallery5, alt: "Shared kitchen with wooden countertop", caption: "A fully equipped kitchen where you can cook up a feast or just brew a coffee." },
   { src: gallery6, alt: "Bunk beds with privacy curtains and lockers", caption: "Numbered bunks, privacy curtains, and your own lock. Sleep easy." },
   { src: gallery7, alt: "Outdoor garden at night with wooden spool tables", caption: "String lights, spool tables, and cold Elbar beer under the stars." },
-  { src: gallery8, alt: "Garden entrance at night with coloured lights and red fence", caption: "Step through the gate — the night is just getting started." },
+  { src: gallery8, alt: "Garden entrance at night with coloured lights and red fence", caption: "Step through the gate. The night is just getting started." },
   { src: gallery9, alt: "Outdoor seating area with spool tables and Elbar umbrella", caption: "Pallet seats, candles on the table, and nowhere else to be." },
-  { src: gallery10, alt: "Terrace with TV, yellow tyre stools and pallet benches", caption: "TV on the wall, tyres for seats — comfort on our own terms." },
+  { src: gallery10, alt: "Terrace with TV, yellow tyre stools and pallet benches", caption: "TV on the wall, tyres for seats. Comfort on our own terms." },
+  { src: gallery11, alt: "Dorm room with wooden bunk beds and teal accent wall", caption: "Wooden bunks, warm rugs, and a room that actually feels lived in." },
 ];
 const MAP_EMBED =
   "https://www.google.com/maps?q=41.3343197,19.8154374&z=16&output=embed";
 const DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=41.3343197,19.8154374";
 
+const TITLE = "The Bearded Dad Hostel | Family-Run Hostel in Tirana, Albania";
+const DESCRIPTION =
+  "A family home turned social hostel in central Tirana. Rated 9.4 Superb on Hostelworld. Free breakfast, free bikes, nightly family dinners, and a dog named Nesha. Steps from Skanderbeg Square.";
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  name: "The Bearded Dad Hostel",
+  description: DESCRIPTION,
+  url: SITE_URL,
+  telephone: "+355695539156",
+  email: "beardeddadhostel@gmail.com",
+  image: `${SITE_URL}/og-image.webp`,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Rruga Hamid Shijaku, Vila 13",
+    addressLocality: "Tirana",
+    addressCountry: "AL",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 41.3343197,
+    longitude: 19.8154374,
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "9.4",
+    bestRating: "10",
+    worstRating: "1",
+    reviewCount: "674",
+  },
+  priceRange: "ALL 1,710–2,081 per bed per night",
+  checkinTime: "13:00",
+  checkoutTime: "11:00",
+  amenityFeature: [
+    { "@type": "LocationFeatureSpecification", name: "Free Breakfast", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Free Bicycles", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Free Wi-Fi", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Air Conditioning", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Security Lockers", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Airport Transfer", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Luggage Storage", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Garden & Fire Pit", value: true },
+  ],
+  sameAs: [
+    BOOK_URL,
+    "https://www.booking.com/searchresults.html?ss=The+Bearded+Dad+Hostel+Tirana",
+  ],
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Lexi" },
+      reviewBody:
+        "The best hostel I've ever stayed in. It's so social and feels like home! I would recommend it to anyone and would definitely be back when I'm in Tirana.",
+      reviewRating: { "@type": "Rating", ratingValue: "10", bestRating: "10" },
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Mariam" },
+      reviewBody:
+        "This one felt like a hotel omg. The staff were friendly and kind. It was lively with events happening every day. Thank you guys, definitely returning!",
+      reviewRating: { "@type": "Rating", ratingValue: "10", bestRating: "10" },
+    },
+  ],
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "The Bearded Dad Hostel | Family-Run Hostel in Tirana, Albania" },
-      {
-        name: "description",
-        content:
-          "A family home turned social hostel in central Tirana. Rated 9.4 Superb on Hostelworld. Free breakfast, free bikes, nightly family dinners and a dog named Nesha.",
-      },
-      { property: "og:title", content: "The Bearded Dad Hostel, Tirana, Albania" },
-      {
-        property: "og:description",
-        content:
-          "Tirana's most home-like hostel. Rated 9.4 Superb, staff 9.7. Free breakfast, bikes, city tour and nightly events near Skanderbeg Square.",
-      },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { name: "keywords", content: "hostel Tirana, Albania hostel, budget accommodation Tirana, Skanderbeg Square hostel, best hostel Albania, backpacker Tirana, family-run hostel" },
+      { name: "robots", content: "index, follow" },
+      // Open Graph
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:site_name", content: "The Bearded Dad Hostel" },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:title", content: "The Bearded Dad Hostel – Tirana, Albania" },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:image", content: `${SITE_URL}/og-image.webp` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "The Bearded Dad Hostel garden entrance at night, Tirana Albania" },
+      // Twitter / X
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "The Bearded Dad Hostel – Tirana, Albania" },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.webp` },
+      { name: "twitter:image:alt", content: "The Bearded Dad Hostel garden entrance at night, Tirana Albania" },
+      // Geo / local SEO
+      { name: "geo.region", content: "AL-11" },
+      { name: "geo.placename", content: "Tirana, Albania" },
+      { name: "geo.position", content: "41.3343197;19.8154374" },
+      { name: "ICBM", content: "41.3343197, 19.8154374" },
+    ],
+    links: [
+      { rel: "canonical", href: SITE_URL },
+      // Preload the hero image — it's the LCP element on every visit
+      { rel: "preload", as: "image", href: gallery8 },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(schemaOrg),
+      },
     ],
   }),
   component: Index,
@@ -223,6 +326,45 @@ const faqs = [
   },
 ];
 
+const thingsToDo = [
+  {
+    icon: MapPin,
+    title: "Skanderbeg Square",
+    distance: "5 min walk",
+    text: "The city's grand central plaza. Start every day here. National History Museum, Et'hem Bey Mosque, and the best people-watching in Albania.",
+  },
+  {
+    icon: Coffee,
+    title: "Blloku District",
+    distance: "15 min walk",
+    text: "Once reserved for communist elites, now Tirana's trendiest neighbourhood. Packed with cafes, boutiques, and bars that go until sunrise.",
+  },
+  {
+    icon: Landmark,
+    title: "The Pyramid",
+    distance: "10 min walk",
+    text: "Built to honour Enver Hoxha, now a graffiti-covered ruin and one of the most striking landmarks in the Balkans. Locals climb it at sunset.",
+  },
+  {
+    icon: Mountain,
+    title: "Dajti Mountain",
+    distance: "30 min by cable car",
+    text: "Take the Dajti Ekspres gondola up for sweeping views over Tirana. Pine forests, a restaurant at the top, and cool air in summer.",
+  },
+  {
+    icon: Waves,
+    title: "Bovilla Lake",
+    distance: "Day trip",
+    text: "Turquoise reservoir ringed by mountains an hour from the city. We run a guided hike, so sign up at reception.",
+  },
+  {
+    icon: ShoppingBasket,
+    title: "Pazari i Ri (New Bazaar)",
+    distance: "10 min walk",
+    text: "Tirana's best food market. Fresh produce, local cheeses, byrek, and tavë kosi. The ideal breakfast detour before the city tour.",
+  },
+];
+
 const scores = [
   ["Staff", "9.7"],
   ["Value", "9.6"],
@@ -341,6 +483,7 @@ function Index() {
           alt="The Bearded Dad Hostel garden entrance at night with colourful lights and red fence"
           width={1600}
           height={1200}
+          fetchPriority="high"
           className="absolute inset-0 size-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
@@ -419,7 +562,7 @@ function Index() {
               />
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/65">
-              The Hoscars are Hostelworld's annual celebration of the world's finest hostels —
+              The Hoscars are Hostelworld's annual celebration of the world's finest hostels,
               voted entirely by travellers. Two years in a row, guests chose The Bearded Dad
               as one of the best in Albania.
             </p>
@@ -478,7 +621,7 @@ function Index() {
           <Reveal className="overflow-hidden rounded-3xl bg-primary p-6 text-primary-foreground sm:p-8">
             <img
               src={storyImg}
-              alt="Guests sharing family dinner around a long wooden table with Nesha the dog"
+              alt="The Bearded Dad Hostel building exterior in Tirana, Albania"
               width={1200}
               height={1408}
               loading="lazy"
@@ -544,7 +687,13 @@ function Index() {
       {/* AMENITIES */}
       <section className="border-y border-border bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <Reveal className="max-w-xl">
+          <Reveal className="relative max-w-xl">
+            <img
+              src={illusWaving}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none select-none absolute -top-10 -right-28 hidden h-40 w-40 opacity-90 mix-blend-multiply lg:block"
+            />
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
               Amenities
             </p>
@@ -618,7 +767,7 @@ function Index() {
 
       {/* REVIEWS */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <Reveal className="flex flex-wrap items-end justify-between gap-4">
+        <Reveal className="relative flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
               Guest reviews
@@ -627,6 +776,12 @@ function Index() {
               Rated 9.4 Superb by 674 guests
             </h2>
           </div>
+          <img
+            src={illusLaughing}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute -top-12 right-36 hidden h-36 w-36 opacity-85 mix-blend-multiply lg:block"
+          />
           <div className="flex gap-2 text-sm font-semibold">
             <span className="rounded-full bg-primary px-4 py-2 text-primary-foreground">
               9.4 Hostelworld
@@ -663,7 +818,13 @@ function Index() {
       {/* ROOMS */}
       <section id="rooms" className="border-y border-border bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <Reveal className="max-w-xl">
+          <Reveal className="relative max-w-xl">
+            <img
+              src={illusCoffee}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none select-none absolute -top-8 -right-32 hidden h-36 w-36 opacity-90 mix-blend-multiply lg:block"
+            />
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">Rooms</p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">Where you'll sleep</h2>
             <p className="mt-3 text-muted-foreground">
@@ -768,19 +929,57 @@ function Index() {
               title="Map showing The Bearded Dad Hostel in Tirana"
               src={MAP_EMBED}
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="strict-origin"
               className="h-80 w-full lg:h-full lg:min-h-[26rem]"
             />
           </Reveal>
         </div>
       </section>
 
+      {/* THINGS TO DO */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <Reveal className="relative max-w-xl">
+          <img
+            src={illusHappy}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute -top-10 -right-28 hidden h-40 w-40 opacity-85 mix-blend-multiply lg:block"
+          />
+          <p className="text-xs font-semibold uppercase tracking-widest text-accent">Explore Tirana</p>
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl">Things to do near the hostel</h2>
+          <p className="mt-3 text-muted-foreground">
+            We're in the middle of everything. Here's what's worth your time.
+          </p>
+        </Reveal>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {thingsToDo.map((item, i) => (
+            <Reveal
+              key={item.title}
+              delay={(i % 3) * 60}
+              className="rounded-2xl border border-border bg-card transition-colors hover:border-accent"
+            >
+              <SpotlightCard className="h-full rounded-2xl p-5">
+                <div className="flex items-center justify-between gap-2">
+                  <item.icon className="size-5 text-accent" />
+                  <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent">
+                    {item.distance}
+                  </span>
+                </div>
+                <h3 className="mt-3 text-base font-semibold">{item.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+              </SpotlightCard>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" className="border-y border-border bg-secondary/50">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
-          <Reveal>
+          <Reveal className="relative">
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">FAQ</p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">Good to know</h2>
+            <BeardStrokeAnimation className="pointer-events-none absolute -top-6 right-0 h-32 w-32 text-primary/60 sm:h-40 sm:w-40" />
           </Reveal>
           <div className="mt-8 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-card">
             {faqs.map((f, i) => (
@@ -840,6 +1039,14 @@ function Index() {
             >
               <Phone className="size-4" /> +355 69 553 9156
             </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 flex items-center gap-2 text-primary-foreground/80 hover:text-accent"
+            >
+              <MessageCircle className="size-4" /> WhatsApp us
+            </a>
           </div>
           <div className="text-sm">
             <h3 className="font-display text-lg">Book with us</h3>
@@ -868,6 +1075,17 @@ function Index() {
           © {new Date().getFullYear()} The Bearded Dad Hostel · Tirana, Albania
         </div>
       </footer>
+      {/* FLOATING WHATSAPP BUTTON */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat with us on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:shadow-xl"
+      >
+        <MessageCircle className="size-5" />
+        <span className="hidden sm:inline">WhatsApp us</span>
+      </a>
     </div>
     </ClickSpark>
   );
