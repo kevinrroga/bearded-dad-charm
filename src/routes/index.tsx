@@ -487,7 +487,7 @@ function Index() {
           fetchPriority="high"
           className="absolute inset-0 size-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/10" />
 
         <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 px-4 py-24 sm:px-6 lg:grid-cols-2">
           {/* Left — text */}
