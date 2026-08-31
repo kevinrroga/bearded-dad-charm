@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import { BeardedDadSketch } from "@/components/BeardedDadSketch";
 import { BeardStrokeAnimation } from "@/components/BeardStrokeAnimation";
+import { ScrollExpand } from "@/components/ScrollExpand";
 import { GardenScene } from "@/components/GardenScene";
 import storyImg from "@/assets/story-real.jpg";
 import { Reveal } from "@/components/Reveal";
@@ -877,12 +878,25 @@ function Index() {
       </section>
 
       {/* GALLERY */}
-      <section id="gallery" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-widest text-accent">Gallery</p>
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl">See the space</h2>
-        </Reveal>
-        <Gallery images={galleryImages} />
+      <section id="gallery">
+        <ScrollExpand
+          src={gallery7}
+          alt="Outdoor garden at night with string lights and spool tables"
+          title="See the space"
+          scrollHint="scroll to explore"
+          startWidth={50}
+          startHeight={55}
+          startRadius={28}
+          endRadius={0}
+          scrollDistance={1.0}
+        >
+          <p className="font-display text-2xl font-semibold text-white drop-shadow-lg">
+            The garden, the rooms, the vibe.
+          </p>
+        </ScrollExpand>
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+          <Gallery images={galleryImages} />
+        </div>
       </section>
 
       {/* LOCATION */}
