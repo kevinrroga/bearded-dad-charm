@@ -87,7 +87,20 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
 
   return (
     <>
-      <div ref={gridRef} className="mt-8 w-full">
+      {/* Mobile swipeable carousel */}
+      <div className="mt-8 md:hidden">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {images.map((img, idx) => (
+            <div key={idx} className="w-[80vw] shrink-0 snap-center">
+              <ImageCard img={img} absoluteIndex={idx} onOpen={setLightboxIndex} />
+            </div>
+          ))}
+        </div>
+        <p className="mt-2 text-center text-xs text-muted-foreground">Swipe to browse</p>
+      </div>
+
+      {/* Desktop parallax grid */}
+      <div ref={gridRef} className="mt-8 hidden w-full md:block">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div className="grid gap-4">
             {firstPart.map((img, idx) => (
