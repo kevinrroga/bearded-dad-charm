@@ -40,16 +40,15 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
 
   const shouldReduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
-  const noParallax = shouldReduceMotion || isMobile;
 
   const { scrollYProgress } = useScroll({
     target: gridRef,
     offset: ['start end', 'end start'],
   });
 
-  const translateFirst = useTransform(scrollYProgress, [0, 1], noParallax ? [0, 0] : [0, -120]);
-  const translateSecond = useTransform(scrollYProgress, [0, 1], noParallax ? [0, 0] : [0, 120]);
-  const translateThird = useTransform(scrollYProgress, [0, 1], noParallax ? [0, 0] : [0, -120]);
+  const translateFirst = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -120]);
+  const translateSecond = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 120]);
+  const translateThird = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -120]);
 
   const third = Math.ceil(images.length / 3);
   const firstPart = images.slice(0, third);
@@ -77,14 +76,14 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div className="grid gap-4">
             {firstPart.map((img, idx) => (
-              <motion.div key={'c1-' + idx} style={{ y: translateFirst }}>
+              <motion.div key={'c1-' + idx} style={isMobile ? {} : { y: translateFirst }}>
                 <ImageCard img={img} absoluteIndex={idx} onOpen={setLightboxIndex} />
               </motion.div>
             ))}
           </div>
           <div className="grid gap-4">
             {secondPart.map((img, idx) => (
-              <motion.div key={'c2-' + idx} style={{ y: translateSecond }}>
+              <motion.div key={'c2-' + idx} style={isMobile ? {} : { y: translateSecond }}>
                 <ImageCard img={img} absoluteIndex={third + idx} onOpen={setLightboxIndex} />
               </motion.div>
             ))}
@@ -92,7 +91,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
           {thirdPart.length > 0 && (
             <div className="grid gap-4 md:col-span-2 md:grid-cols-2 lg:col-span-1 lg:grid-cols-1">
               {thirdPart.map((img, idx) => (
-                <motion.div key={'c3-' + idx} style={{ y: translateThird }}>
+                <motion.div key={'c3-' + idx} style={isMobile ? {} : { y: translateThird }}>
                   <ImageCard img={img} absoluteIndex={2 * third + idx} onOpen={setLightboxIndex} />
                 </motion.div>
               ))}
