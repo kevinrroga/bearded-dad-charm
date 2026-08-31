@@ -687,20 +687,21 @@ function Index() {
       {/* AMENITIES */}
       <section className="border-y border-border bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <Reveal className="relative max-w-xl">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-6">
+            <Reveal className="max-w-xl">
+              <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+                Amenities
+              </p>
+              <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+                Everything you need, nothing you don't
+              </h2>
+            </Reveal>
             <img
               src={illusWaving}
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none select-none absolute -top-10 -right-28 hidden h-40 w-40 opacity-90 mix-blend-multiply lg:block"
+              alt="Illustrated bearded dad waving hello"
+              className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
             />
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-              Amenities
-            </p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl">
-              Everything you need, nothing you don't
-            </h2>
-          </Reveal>
+          </div>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {amenities.map((a, i) => (
               <Reveal
@@ -767,7 +768,7 @@ function Index() {
 
       {/* REVIEWS */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <Reveal className="relative flex flex-wrap items-end justify-between gap-4">
+        <Reveal className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
               Guest reviews
@@ -778,9 +779,8 @@ function Index() {
           </div>
           <img
             src={illusLaughing}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none select-none absolute -top-12 right-36 hidden h-36 w-36 opacity-85 mix-blend-multiply lg:block"
+            alt="Illustrated bearded dad laughing with sparkles"
+            className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
           />
           <div className="flex gap-2 text-sm font-semibold">
             <span className="rounded-full bg-primary px-4 py-2 text-primary-foreground">
@@ -818,20 +818,21 @@ function Index() {
       {/* ROOMS */}
       <section id="rooms" className="border-y border-border bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <Reveal className="relative max-w-xl">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-6">
+            <Reveal className="max-w-xl">
+              <p className="text-xs font-semibold uppercase tracking-widest text-accent">Rooms</p>
+              <h2 className="mt-3 font-display text-3xl sm:text-4xl">Where you'll sleep</h2>
+              <p className="mt-3 text-muted-foreground">
+                All rooms include free breakfast, air conditioning, and security lockers.
+                Prices are per bed per night, taxes not included.
+              </p>
+            </Reveal>
             <img
               src={illusCoffee}
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none select-none absolute -top-8 -right-32 hidden h-36 w-36 opacity-90 mix-blend-multiply lg:block"
+              alt="Illustrated bearded dad holding a coffee cup"
+              className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
             />
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">Rooms</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Where you'll sleep</h2>
-            <p className="mt-3 text-muted-foreground">
-              All rooms include free breakfast, air conditioning, and security lockers.
-              Prices are per bed per night, taxes not included.
-            </p>
-          </Reveal>
+          </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rooms.map((r, i) => (
               <Reveal
@@ -938,19 +939,20 @@ function Index() {
 
       {/* THINGS TO DO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <Reveal className="relative max-w-xl">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-6">
+          <Reveal className="max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-accent">Explore Tirana</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Things to do near the hostel</h2>
+            <p className="mt-3 text-muted-foreground">
+              We're in the middle of everything. Here's what's worth your time.
+            </p>
+          </Reveal>
           <img
             src={illusHappy}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none select-none absolute -top-10 -right-28 hidden h-40 w-40 opacity-85 mix-blend-multiply lg:block"
+            alt="Illustrated bearded dad laughing with head back"
+            className="hidden h-36 w-36 shrink-0 rounded-2xl bg-white object-contain p-2 shadow-md lg:block"
           />
-          <p className="text-xs font-semibold uppercase tracking-widest text-accent">Explore Tirana</p>
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl">Things to do near the hostel</h2>
-          <p className="mt-3 text-muted-foreground">
-            We're in the middle of everything. Here's what's worth your time.
-          </p>
-        </Reveal>
+        </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {thingsToDo.map((item, i) => (
             <Reveal
