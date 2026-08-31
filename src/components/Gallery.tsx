@@ -37,6 +37,21 @@ function ImageCard({ img, absoluteIndex, onOpen }: ImageCardProps) {
 export function Gallery({ images }: { images: GalleryImage[] }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0]?.clientX ?? 0;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const delta = touchStartX.current - (e.changedTouches[0]?.clientX ?? 0);
+    if (Math.abs(delta) < 50) return;
+    if (delta > 0) {
+      setLightboxIndex((i) => ((i ?? 0) + 1) % images.length);
+    } else {
+      setLightboxIndex((i) => ((i ?? 0) - 1 + images.length) % images.length);
+    }
+  };
 
   const shouldReduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
@@ -105,6 +120,8 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90"
           onClick={() => setLightboxIndex(null)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <button
             aria-label="Close"
