@@ -184,6 +184,12 @@
     opacity: 1;
     transform: none;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Marquee */
@@ -234,5 +240,9 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .marquee-inner {
+    animation: none;
   }
 }

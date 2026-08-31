@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useScroll, useTransform, motion } from 'motion/react';
+import { useScroll, useTransform, useReducedMotion, motion } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
 export interface GalleryImage {
@@ -37,14 +37,16 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
+  const shouldReduceMotion = useReducedMotion();
+
   const { scrollYProgress } = useScroll({
     target: gridRef,
     offset: ['start end', 'end start'],
   });
 
-  const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const translateThird = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const translateFirst = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -120]);
+  const translateSecond = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 120]);
+  const translateThird = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -120]);
 
   const third = Math.ceil(images.length / 3);
   const firstPart = images.slice(0, third);
