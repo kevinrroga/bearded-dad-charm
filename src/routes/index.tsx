@@ -16,7 +16,6 @@ import {
   Wine,
   Wifi,
   ParkingCircle,
-  Home,
   Star,
   Utensils,
   Beer,
@@ -62,6 +61,7 @@ import gallery8 from "@/assets/gallery-8.webp";
 import gallery9 from "@/assets/gallery-9.png";
 import gallery10 from "@/assets/gallery-10.png";
 import gallery11 from "@/assets/gallery-11.jpg";
+import logoImg from "@/assets/logo.jpg";
 import illusWaving from "@/assets/illus-waving.png";
 import illusCoffee from "@/assets/illus-coffee.png";
 import illusLaughing from "@/assets/illus-laughing.png";
@@ -87,14 +87,14 @@ const MAP_EMBED =
   "https://www.google.com/maps?q=41.3343197,19.8154374&z=16&output=embed";
 const DIRECTIONS = "https://www.google.com/maps/dir/?api=1&destination=41.3343197,19.8154374";
 
-const TITLE = "The Bearded Dad Hostel | Family-Run Hostel in Tirana, Albania";
+const TITLE = "Bearded Dad Hostel | Family-Run Hostel in Tirana, Albania";
 const DESCRIPTION =
   "A family home turned social hostel in central Tirana. Rated 9.4 Superb on Hostelworld. Free breakfast, free bikes, nightly family dinners, and a dog named Nesha. Steps from Skanderbeg Square.";
 
 const schemaOrg = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
-  name: "The Bearded Dad Hostel",
+  name: "Bearded Dad Hostel",
   description: DESCRIPTION,
   url: SITE_URL,
   telephone: "+355695539156",
@@ -163,20 +163,20 @@ export const Route = createFileRoute("/")({
       // Open Graph
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:site_name", content: "The Bearded Dad Hostel" },
+      { property: "og:site_name", content: "Bearded Dad Hostel" },
       { property: "og:locale", content: "en_US" },
-      { property: "og:title", content: "The Bearded Dad Hostel – Tirana, Albania" },
+      { property: "og:title", content: "Bearded Dad Hostel – Tirana, Albania" },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:image", content: `${SITE_URL}/og-image.webp` },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "The Bearded Dad Hostel garden entrance at night, Tirana Albania" },
+      { property: "og:image:alt", content: "Bearded Dad Hostel garden entrance at night, Tirana Albania" },
       // Twitter / X
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "The Bearded Dad Hostel – Tirana, Albania" },
+      { name: "twitter:title", content: "Bearded Dad Hostel – Tirana, Albania" },
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: `${SITE_URL}/og-image.webp` },
-      { name: "twitter:image:alt", content: "The Bearded Dad Hostel garden entrance at night, Tirana Albania" },
+      { name: "twitter:image:alt", content: "Bearded Dad Hostel garden entrance at night, Tirana Albania" },
       // Geo / local SEO
       { name: "geo.region", content: "AL-11" },
       { name: "geo.placename", content: "Tirana, Albania" },
@@ -387,14 +387,12 @@ function Wordmark({ tone = "default" }: { tone?: "default" | "light" }) {
         tone === "light" ? "text-primary-foreground" : "text-primary"
       }`}
     >
-      <span
-        className={`grid size-9 place-items-center rounded-full ${
-          tone === "light" ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
-        }`}
-      >
-        <Home className="size-4" />
-      </span>
-      <span className="hidden sm:inline">The Bearded Dad Hostel</span>
+      <img
+        src={logoImg}
+        alt="Bearded Dad Hostel logo"
+        className="size-9 rounded-full object-cover"
+      />
+      <span className="hidden sm:inline">Bearded Dad Hostel</span>
     </a>
   );
 }
@@ -484,7 +482,7 @@ function Index() {
       <section className="relative flex min-h-[92vh] items-center overflow-hidden">
         <img
           src={gallery8}
-          alt="The Bearded Dad Hostel garden entrance at night with colourful lights and red fence"
+          alt="Bearded Dad Hostel garden entrance at night with colourful lights and red fence"
           width={1600}
           height={1200}
           fetchPriority="high"
@@ -664,7 +662,7 @@ function Index() {
           <Reveal className="overflow-hidden rounded-3xl bg-primary p-6 text-primary-foreground sm:p-8">
             <img
               src={storyImg}
-              alt="The Bearded Dad Hostel building exterior in Tirana, Albania"
+              alt="Bearded Dad Hostel building exterior in Tirana, Albania"
               width={1200}
               height={1408}
               loading="lazy"
@@ -927,7 +925,7 @@ function Index() {
       <section id="gallery">
         <ScrollExpand
           src={gallery9}
-          alt="Outdoor seating area with spool tables at The Bearded Dad Hostel"
+          alt="Outdoor seating area with spool tables at Bearded Dad Hostel"
           title="See the space"
           scrollHint="scroll to explore"
           startWidth={50}
@@ -987,7 +985,7 @@ function Index() {
           </Reveal>
           <Reveal delay={80} className="overflow-hidden rounded-3xl border border-border">
             <iframe
-              title="Map showing The Bearded Dad Hostel in Tirana"
+              title="Map showing Bearded Dad Hostel in Tirana"
               src={MAP_EMBED}
               loading="lazy"
               referrerPolicy="strict-origin"
@@ -1134,7 +1132,7 @@ function Index() {
           </div>
         </div>
         <div className="border-t border-primary-foreground/15 py-5 text-center text-xs text-primary-foreground/60">
-          © {new Date().getFullYear()} The Bearded Dad Hostel · Tirana, Albania
+          © {new Date().getFullYear()} Bearded Dad Hostel · Tirana, Albania
         </div>
       </footer>
       {/* FLOATING WHATSAPP BUTTON */}
