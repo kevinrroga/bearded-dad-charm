@@ -42,7 +42,6 @@ import { GardenScene } from "@/components/GardenScene";
 import storyImg from "@/assets/story-real.jpg";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
-import { BlurText } from "@/components/BlurText";
 import RotatingText from "@/components/RotatingText";
 import DecryptedText from "@/components/DecryptedText";
 import StarBorder from "@/components/StarBorder";
@@ -66,6 +65,7 @@ import illusWaving from "@/assets/illus-waving.png";
 import illusCoffee from "@/assets/illus-coffee.png";
 import illusLaughing from "@/assets/illus-laughing.png";
 import illusHappy from "@/assets/illus-happy.png";
+import { translations, type Lang } from "@/lib/translations";
 
 const BOOK_URL = "https://www.hostelworld.com/hostels/p/313345/the-bearded-dad-hostel/";
 const WHATSAPP_URL = "https://wa.me/355695539156";
@@ -198,185 +198,28 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Rooms", href: "#rooms" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Events", href: "#events" },
-  { label: "Location", href: "#location" },
-  { label: "FAQ", href: "#faq" },
-];
+// Icon arrays — kept separate from translations so icons aren't duplicated
+const amenityIcons = [Coffee, Bike, Lock, MapIcon, Luggage, Bus, Flame, Sun, Wine, Wifi, ParkingCircle, Car, Sofa, Mic2, Trees];
+const eventIcons = [Utensils, Beer, Martini, Mountain, Ship, Mic2, MapIcon];
+const thingsToDoIcons = [MapPin, Coffee, Landmark, Mountain, Waves, ShoppingBasket];
 
-const amenities = [
-  { icon: Coffee, title: "Free breakfast daily", text: "Continental, included every morning." },
-  { icon: Bike, title: "Free bicycles", text: "Explore Tirana like a local." },
-  { icon: Lock, title: "Free security lockers", text: "In every dorm room." },
-  { icon: MapIcon, title: "Free city tour", text: "Walk the city with the team." },
-  { icon: Luggage, title: "Free luggage storage", text: "Before check-in, after check-out." },
-  { icon: Bus, title: "Airport transfers", text: "Available on request." },
-  { icon: Flame, title: "Garden & fire pit", text: "Where the evenings happen." },
-  { icon: Sun, title: "Big patio + balcony", text: "Huge balcony for slow mornings." },
-  { icon: Wine, title: "Bar and terrace", text: "Cheap drinks, good company." },
-  { icon: Wifi, title: "Free Wi-Fi throughout", text: "Works in every room." },
-  { icon: ParkingCircle, title: "Bicycle parking", text: "Bring your own wheels." },
-  { icon: Car, title: "Car hire available", text: "For trips beyond the city." },
-  { icon: Sofa, title: "Indoor lounge areas", text: "Sofas, books, board games." },
-  { icon: Mic2, title: "Karaoke", text: "It gets loud. Sorry, neighbours." },
-  { icon: Trees, title: "3rd floor lounge", text: "Lounge and veranda up top." },
-];
-
-const events = [
-  { icon: Utensils, title: "Family Dinner", text: "Nightly · €7. Everyone at one long table." },
-  { icon: Beer, title: "BBQ and Beers", text: "Grill fired up in the garden." },
-  { icon: Martini, title: "Bar / Pub Crawl", text: "Tirana's nightlife, with locals leading." },
-  { icon: Mountain, title: "Bovilla Lake Hiking Tour", text: "Day trip to the turquoise lake." },
-  { icon: Ship, title: "Self-Guided Boat & Hiking", text: "Into the Albanian Alps." },
-  { icon: Mic2, title: "Karaoke nights", text: "No talent required." },
-  { icon: MapIcon, title: "Free City Tour", text: "Get your bearings on day one." },
-];
-
+// Reviews stay in English (real guest quotes)
 const reviews = [
   {
-    quote:
-      "Modern, clean rooms and great location. Breakfast each morning was a 12/10!",
+    quote: "Modern, clean rooms and great location. Breakfast each morning was a 12/10!",
     name: "Anonymous",
     meta: "Female 31-40 · Australia",
   },
   {
-    quote:
-      "The best hostel I've ever stayed in. It's so social and feels like home! I would recommend it to anyone and would definitely be back when I'm in Tirana.",
+    quote: "The best hostel I've ever stayed in. It's so social and feels like home! I would recommend it to anyone and would definitely be back when I'm in Tirana.",
     name: "Lexi",
     meta: "Female 18-24 · Australia",
   },
   {
-    quote:
-      "This one felt like a hotel omg. The staff were friendly and kind. It was lively with events happening every day. Thank you guys, definitely returning!",
+    quote: "This one felt like a hotel omg. The staff were friendly and kind. It was lively with events happening every day. Thank you guys, definitely returning!",
     name: "Mariam",
     meta: "Female 25-30 · Egypt",
   },
-];
-
-const rooms = [
-  {
-    name: "Standard 8-Bed Mixed Dorm",
-    location: "Main building",
-    capacity: "Sleeps 8",
-    type: "Mixed dorm",
-    price: "ALL 1,710",
-    badge: null as string | null,
-    features: ["Air conditioning", "Security lockers", "Charging points", "Shared bathroom", "Kitchen access"],
-  },
-  {
-    name: "Standard 8-Bed Mixed Dorm",
-    location: "Annex · 20 m away",
-    capacity: "Sleeps 8",
-    type: "Mixed dorm",
-    price: "ALL 1,710",
-    badge: null as string | null,
-    features: ["Air conditioning", "Security lockers", "Charging points", "Shared bathroom", "Kitchen access"],
-  },
-  {
-    name: "Standard 6-Bed Mixed Dorm",
-    location: "Main building",
-    capacity: "Sleeps 6",
-    type: "Mixed dorm",
-    price: "ALL 1,895",
-    badge: null as string | null,
-    features: ["Air conditioning", "Security lockers", "Shared bathroom", "Kitchen access"],
-  },
-  {
-    name: "Deluxe 5-Bed Mixed Dorm",
-    location: "Private villa · 100 m away",
-    capacity: "Sleeps 5",
-    type: "3 singles + 2 bunks",
-    price: "ALL 1,988",
-    badge: "Ensuite" as string | null,
-    features: ["Private en-suite bathroom", "Fitted kitchen", "Security lockers", "Air conditioning"],
-  },
-  {
-    name: "Deluxe 6-Bed Female Dorm",
-    location: "Private villa · 100 m away",
-    capacity: "Sleeps 6",
-    type: "6 bunk beds",
-    price: "ALL 2,081",
-    badge: "Female Only" as string | null,
-    features: ["Private en-suite bathroom", "Fitted kitchen", "Security lockers", "Air conditioning"],
-  },
-];
-
-const faqs = [
-  {
-    q: "What are the check-in hours?",
-    a: "Check-in is from 12:00 to 00:00. Late arrivals after 01:30 with prior notice carry a €5 (500 lek) charge. Arriving after 01:00 without notifying us in advance may incur additional fees.",
-  },
-  { q: "When is check-out?", a: "Check-out is before 11:00. Reception is open 08:00 to 01:00 if you need assistance." },
-  {
-    q: "What is the cancellation policy?",
-    a: "Free cancellation up to 1 day before arrival. A late cancellation or no-show will be charged the full price of your stay.",
-  },
-  {
-    q: "How can I pay?",
-    a: "Payment is made upon arrival, by cash or card. Taxes are not included in the listed room rates.",
-  },
-  { q: "Is breakfast included?", a: "Yes, a free breakfast is included with every stay, every day." },
-  { q: "Is there a minimum age?", a: "Yes, guests must be at least 18 years old." },
-  {
-    q: "Is smoking allowed?",
-    a: "The hostel is a non-smoking facility. Please smoke only in designated outdoor areas.",
-  },
-  {
-    q: "Are pets allowed?",
-    a: "No outside pets are allowed. Nesha, our resident hostel dog, already has the place covered.",
-  },
-];
-
-const thingsToDo = [
-  {
-    icon: MapPin,
-    title: "Skanderbeg Square",
-    distance: "5 min walk",
-    text: "The city's grand central plaza. Start every day here. National History Museum, Et'hem Bey Mosque, and the best people-watching in Albania.",
-  },
-  {
-    icon: Coffee,
-    title: "Blloku District",
-    distance: "15 min walk",
-    text: "Once reserved for communist elites, now Tirana's trendiest neighbourhood. Packed with cafes, boutiques, and bars that go until sunrise.",
-  },
-  {
-    icon: Landmark,
-    title: "The Pyramid",
-    distance: "10 min walk",
-    text: "Built to honour Enver Hoxha, now a graffiti-covered ruin and one of the most striking landmarks in the Balkans. Locals climb it at sunset.",
-  },
-  {
-    icon: Mountain,
-    title: "Dajti Mountain",
-    distance: "30 min by cable car",
-    text: "Take the Dajti Ekspres gondola up for sweeping views over Tirana. Pine forests, a restaurant at the top, and cool air in summer.",
-  },
-  {
-    icon: Waves,
-    title: "Bovilla Lake",
-    distance: "Day trip",
-    text: "Turquoise reservoir ringed by mountains an hour from the city. We run a guided hike, so sign up at reception.",
-  },
-  {
-    icon: ShoppingBasket,
-    title: "Pazari i Ri (New Bazaar)",
-    distance: "10 min walk",
-    text: "Tirana's best food market. Fresh produce, local cheeses, byrek, and tavë kosi. The ideal breakfast detour before the city tour.",
-  },
-];
-
-const scores = [
-  ["Staff", "9.7"],
-  ["Value", "9.6"],
-  ["Atmosphere", "9.5"],
-  ["Security", "9.5"],
-  ["Location", "9.4"],
-  ["Cleanliness", "9.3"],
-  ["Facilities", "9.1"],
 ];
 
 function Wordmark({ tone = "default" }: { tone?: "default" | "light" }) {
@@ -401,6 +244,9 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [isDark, setIsDark] = useState(false);
+  const [lang, setLang] = useState<Lang>('en');
+
+  const t = translations[lang];
 
   useEffect(() => {
     const saved = localStorage.getItem('theme');
@@ -427,7 +273,7 @@ function Index() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Wordmark />
           <nav className="hidden items-center gap-7 text-sm font-medium md:flex">
-            {navLinks.map((l) => (
+            {t.nav.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -444,8 +290,15 @@ function Index() {
               rel="noreferrer"
               className="rounded-full bg-primary px-4 py-2 text-sm font-semibold transition-colors hover:bg-primary/90"
             >
-              <ShinyText text="Book Now" color="rgba(245, 238, 220, 0.9)" shineColor="#ffffff" speed={3} />
+              <ShinyText text={t.misc.bookNow} color="rgba(245, 238, 220, 0.9)" shineColor="#ffffff" speed={3} />
             </a>
+            <button
+              onClick={() => setLang(lang === 'en' ? 'sq' : 'en')}
+              aria-label="Switch language"
+              className="grid h-9 place-items-center rounded-full border border-border px-3 text-xs font-semibold transition-colors hover:bg-secondary"
+            >
+              {lang === 'en' ? 'SQ' : 'EN'}
+            </button>
             <button
               onClick={toggleTheme}
               aria-label="Toggle dark mode"
@@ -464,7 +317,7 @@ function Index() {
         </div>
         {menuOpen && (
           <nav className="border-t border-border bg-background px-4 pb-4 md:hidden">
-            {navLinks.map((l) => (
+            {t.nav.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -494,13 +347,13 @@ function Index() {
           {/* Left — text */}
           <Reveal className="max-w-2xl">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/90 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent-foreground">
-              <Star className="size-3.5" /> Tirana, Albania
+              <Star className="size-3.5" /> {t.hero.badge}
             </p>
             <h1 className="font-display text-4xl leading-[1.1] text-primary-foreground sm:text-6xl">
               {"A "}
               <span className="relative inline-block overflow-hidden align-bottom pb-1">
                 <RotatingText
-                  texts={["family home", "social space", "warm welcome", "Tirana hideout"]}
+                  texts={t.hero.rotatingWords}
                   mainClassName="text-accent"
                   splitBy="words"
                   staggerDuration={0.07}
@@ -512,13 +365,10 @@ function Index() {
                   exit={{ y: "-110%", opacity: 0 }}
                 />
               </span>
-              {"."}<br />
-              {"Now yours for a few nights."}
+              {t.hero.tagline}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 sm:text-lg">
-              A 2-story villa tucked into a quiet alley off Bulevardi Zogu I, steps from
-              Skanderbeg Square but far enough to actually sleep. Breakfast on the patio,
-              family dinner at the long table, Nesha the dog somewhere underfoot.
+              {t.hero.description}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <StarBorder
@@ -530,23 +380,17 @@ function Index() {
                 speed="5s"
                 innerClassName="bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 block"
               >
-                Check availability
+                {t.hero.cta1}
               </StarBorder>
               <a
                 href="#about"
                 className="rounded-full border border-primary-foreground/50 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
               >
-                Meet the team
+                {t.hero.cta2}
               </a>
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-primary-foreground/85 sm:text-sm">
-              {[
-                "Rated 9.4",
-                "Staff rated 9.7",
-                "Free breakfast",
-                "Free bikes",
-                "Near Skanderbeg Square",
-              ].map((b) => (
+              {t.hero.bullets.map((b) => (
                 <li key={b} className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-accent" />
                   {b}
@@ -571,19 +415,17 @@ function Index() {
         <div className="awards-shimmer pointer-events-none absolute inset-0" />
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">Recognition</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-accent">{t.awards.label}</p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">
               <ShinyText
-                text="Award-Winning Hospitality"
+                text={t.awards.heading}
                 color="rgba(245, 238, 220, 0.92)"
                 shineColor="#D48B2E"
                 speed={4}
               />
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-sm text-primary-foreground/65">
-              The Hoscars are Hostelworld's annual celebration of the world's finest hostels,
-              voted entirely by travellers. Two years in a row, guests chose The Bearded Dad
-              as one of the best in Albania.
+              {t.awards.description}
             </p>
           </div>
 
@@ -605,11 +447,11 @@ function Index() {
                   encryptedClassName="text-accent/40"
                 />
               </p>
-              <p className="mt-1 text-lg font-semibold text-primary-foreground">in Albania</p>
+              <p className="mt-1 text-lg font-semibold text-primary-foreground">{t.awards.inAlbania}</p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
-                2025 Hoscar Country Winner
+                {t.awards.award2025label}
               </p>
-              <p className="mt-2 text-xs text-primary-foreground/40">Voted by travellers · Hostelworld</p>
+              <p className="mt-2 text-xs text-primary-foreground/40">{t.awards.votedBy}</p>
             </div>
 
             {/* Divider on desktop */}
@@ -632,11 +474,11 @@ function Index() {
                   encryptedClassName="text-accent/30"
                 />
               </p>
-              <p className="mt-1 text-lg font-semibold text-primary-foreground">in Albania</p>
+              <p className="mt-1 text-lg font-semibold text-primary-foreground">{t.awards.inAlbania}</p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground/50">
-                2026 Hoscar Country Winner
+                {t.awards.award2026label}
               </p>
-              <p className="mt-2 text-xs text-primary-foreground/40">Voted by travellers · Hostelworld</p>
+              <p className="mt-2 text-xs text-primary-foreground/40">{t.awards.votedBy}</p>
             </div>
           </div>
 
@@ -647,14 +489,14 @@ function Index() {
               rel="noreferrer"
               className="underline underline-offset-2 hover:text-primary-foreground/60 transition-colors"
             >
-              Learn more about the Hoscar Awards
+              {t.awards.learnMore}
             </a>
           </p>
         </div>
       </section>
 
       {/* MARQUEE */}
-      <MarqueeStrip />
+      <MarqueeStrip items={t.marquee} />
 
       {/* STORY */}
       <section id="about" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
@@ -689,30 +531,18 @@ function Index() {
               className="pointer-events-none absolute -top-10 right-2 hidden h-36 w-36 -rotate-6 text-primary/70 sm:block"
             />
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-              Our story
+              {t.story.label}
             </p>
             <h2 className="mt-3 max-w-sm font-display text-3xl sm:text-4xl">
-              It was somebody's childhood home first.
+              {t.story.heading}
             </h2>
             <div className="mt-4 space-y-4 text-muted-foreground">
-              <p>
-                Dolsin and his family took his wife's childhood home, a two-story villa on
-                Rruga Hamid Shijaku, and slowly turned it into a hostel. Nothing was gutted.
-                The kitchen is still a kitchen, the garden is still the garden, and the family
-                is still here.
-              </p>
-              <p>
-                Day to day the house is run with an international volunteer crew led by Jacob,
-                travellers who stayed and never quite left. They cook the family dinner, lead
-                the city tour and know which bar is worth the walk.
-              </p>
-              <p>
-                And then there's Nesha, the hostel dog, who has strong opinions about the
-                garden fire pit and will supervise your breakfast.
-              </p>
+              <p>{t.story.p1}</p>
+              <p>{t.story.p2}</p>
+              <p>{t.story.p3}</p>
             </div>
             <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {scores.slice(0, 4).map(([label, val]) => (
+              {t.story.scores.map(([label, val]) => (
                 <div key={label} className="rounded-2xl border border-border bg-card p-3">
                   <dt className="text-xs uppercase tracking-wide text-muted-foreground">
                     {label}
@@ -731,10 +561,10 @@ function Index() {
           <div className="mb-8 flex flex-wrap items-center justify-between gap-6">
             <Reveal className="max-w-xl">
               <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-                Amenities
+                {t.amenities.label}
               </p>
               <h2 className="mt-3 font-display text-3xl sm:text-4xl">
-                Everything you need, nothing you don't
+                {t.amenities.heading}
               </h2>
             </Reveal>
             <img
@@ -744,20 +574,23 @@ function Index() {
             />
           </div>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {amenities.map((a, i) => (
-              <Reveal
-                as="li"
-                key={a.title}
-                delay={(i % 3) * 60}
-                className="rounded-2xl border border-border bg-card transition-colors hover:border-accent"
-              >
-                <SpotlightCard className="h-full rounded-2xl p-4">
-                  <a.icon className="size-5 text-accent" />
-                  <h3 className="mt-3 text-base font-semibold">{a.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{a.text}</p>
-                </SpotlightCard>
-              </Reveal>
-            ))}
+            {t.amenities.items.map((a, i) => {
+              const Icon = amenityIcons[i]!;
+              return (
+                <Reveal
+                  as="li"
+                  key={a.title}
+                  delay={(i % 3) * 60}
+                  className="rounded-2xl border border-border bg-card transition-colors hover:border-accent"
+                >
+                  <SpotlightCard className="h-full rounded-2xl p-4">
+                    <Icon className="size-5 text-accent" />
+                    <h3 className="mt-3 text-base font-semibold">{a.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{a.text}</p>
+                  </SpotlightCard>
+                </Reveal>
+              );
+            })}
           </ul>
         </div>
       </section>
@@ -767,15 +600,13 @@ function Index() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-              What's on
+              {t.events.label}
             </p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">
-              You will not eat dinner alone here.
+              {t.events.heading}
             </h2>
             <p className="mt-4 max-w-md text-primary-foreground/80">
-              Something happens every day, which is the whole point. Solo travellers arrive at
-              4pm and have a table full of people by 8pm. Come down for the family dinner, stay
-              for the karaoke, sign up for the lake hike in the morning.
+              {t.events.description}
             </p>
             <StarBorder
               as="a"
@@ -787,26 +618,29 @@ function Index() {
               speed="5s"
               innerClassName="bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground inline-flex items-center gap-2"
             >
-              Book your bed <ArrowRight className="size-4" />
+              {t.events.cta} <ArrowRight className="size-4" />
             </StarBorder>
           </Reveal>
           <ul className="divide-y divide-primary-foreground/15">
-            {events.map((e, i) => (
-              <Reveal
-                as="li"
-                key={e.title}
-                delay={i * 40}
-                className="flex items-start gap-4 py-4"
-              >
-                <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent/20 text-accent">
-                  <e.icon className="size-5" />
-                </span>
-                <div>
-                  <h3 className="font-semibold">{e.title}</h3>
-                  <p className="text-sm text-primary-foreground/75">{e.text}</p>
-                </div>
-              </Reveal>
-            ))}
+            {t.events.items.map((e, i) => {
+              const Icon = eventIcons[i]!;
+              return (
+                <Reveal
+                  as="li"
+                  key={e.title}
+                  delay={i * 40}
+                  className="flex items-start gap-4 py-4"
+                >
+                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent/20 text-accent">
+                    <Icon className="size-5" />
+                  </span>
+                  <div>
+                    <h3 className="font-semibold">{e.title}</h3>
+                    <p className="text-sm text-primary-foreground/75">{e.text}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </ul>
         </div>
       </section>
@@ -816,10 +650,10 @@ function Index() {
         <Reveal className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-              Guest reviews
+              {t.reviews.label}
             </p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">
-              Rated 9.4 Superb by 674 guests
+              {t.reviews.heading}
             </h2>
           </div>
           <img
@@ -829,10 +663,10 @@ function Index() {
           />
           <div className="flex gap-2 text-sm font-semibold">
             <span className="rounded-full bg-primary px-4 py-2 text-primary-foreground">
-              9.4 Hostelworld
+              {t.reviews.badge1}
             </span>
             <span className="rounded-full bg-accent px-4 py-2 text-accent-foreground">
-              9.7 Staff rating
+              {t.reviews.badge2}
             </span>
           </div>
         </Reveal>
@@ -865,11 +699,10 @@ function Index() {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
           <div className="mb-8 flex flex-wrap items-center justify-between gap-6">
             <Reveal className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-accent">Rooms</p>
-              <h2 className="mt-3 font-display text-3xl sm:text-4xl">Where you'll sleep</h2>
+              <p className="text-xs font-semibold uppercase tracking-widest text-accent">{t.rooms.label}</p>
+              <h2 className="mt-3 font-display text-3xl sm:text-4xl">{t.rooms.heading}</h2>
               <p className="mt-3 text-muted-foreground">
-                All rooms include free breakfast, air conditioning, and security lockers.
-                Prices are per bed per night, taxes not included.
+                {t.rooms.description}
               </p>
             </Reveal>
             <img
@@ -879,7 +712,7 @@ function Index() {
             />
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {rooms.map((r, i) => (
+            {t.rooms.items.map((r, i) => (
               <Reveal
                 key={r.name + i}
                 delay={i * 70}
@@ -896,11 +729,11 @@ function Index() {
                 <p className="mt-1 text-xs text-muted-foreground">{r.location}</p>
                 <div className="mt-3 flex items-baseline gap-1.5">
                   <span className="font-display text-2xl font-semibold">{r.price}</span>
-                  <span className="text-xs text-muted-foreground">/ bed / night</span>
+                  <span className="text-xs text-muted-foreground">{t.rooms.perBedNight}</span>
                 </div>
                 <p className="mt-0.5 text-sm text-muted-foreground">{r.capacity} · {r.type}</p>
                 <ul className="mt-4 flex-1 space-y-1.5 text-sm text-muted-foreground">
-                  {["Free breakfast", ...r.features].map((f) => (
+                  {[t.rooms.freeBreakfast, ...r.features].map((f) => (
                     <li key={f} className="flex items-center gap-2">
                       <span className="size-1.5 shrink-0 rounded-full bg-accent" />
                       {f}
@@ -913,7 +746,7 @@ function Index() {
                   rel="noreferrer"
                   className="mt-5 rounded-full bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                 >
-                  Book this room
+                  {t.rooms.bookRoom}
                 </a>
               </Reveal>
             ))}
@@ -926,8 +759,8 @@ function Index() {
         <ScrollExpand
           src={gallery9}
           alt="Outdoor seating area with spool tables at Bearded Dad Hostel"
-          title="See the space"
-          scrollHint="scroll to explore"
+          title={t.gallery.title}
+          scrollHint={t.gallery.scrollHint}
           startWidth={50}
           startHeight={55}
           startRadius={28}
@@ -935,11 +768,11 @@ function Index() {
           scrollDistance={1.0}
         >
           <p className="font-display text-2xl font-semibold text-white drop-shadow-lg">
-            The garden, the rooms, the vibe.
+            {t.gallery.subtitle}
           </p>
         </ScrollExpand>
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <Gallery images={galleryImages} />
+          <Gallery images={galleryImages} swipeHint={t.gallery.swipeHint} />
         </div>
       </section>
 
@@ -948,23 +781,17 @@ function Index() {
         <div className="grid gap-8 lg:grid-cols-2">
           <Reveal className="flex flex-col justify-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-              Location
+              {t.location.label}
             </p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">
-              A quiet alley, right in the middle of it all
+              {t.location.heading}
             </h2>
             <p className="mt-4 flex items-start gap-2 text-muted-foreground">
               <MapPin className="mt-0.5 size-5 shrink-0 text-accent" />
-              Rruga Hamid Shijaku, Vila 13, Tirana, Albania
+              {t.location.address}
             </p>
             <ul className="mt-6 space-y-3">
-              {[
-                ["Skanderbeg Square", "Within 500 m"],
-                ["Bulevardi Zogu I", "Steps away"],
-                ["Toptani Shopping Center", "1 km"],
-                ["Ring Center", "1.4 km"],
-                ["Tirana International Airport", "13 km"],
-              ].map(([place, dist]) => (
+              {t.location.places.map(([place, dist]) => (
                 <li
                   key={place}
                   className="flex items-center justify-between border-b border-border pb-2 text-sm"
@@ -980,12 +807,12 @@ function Index() {
               rel="noreferrer"
               className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
             >
-              Get directions <ArrowRight className="size-4" />
+              {t.location.directions} <ArrowRight className="size-4" />
             </a>
           </Reveal>
           <Reveal delay={80} className="overflow-hidden rounded-3xl border border-border">
             <iframe
-              title="Map showing Bearded Dad Hostel in Tirana"
+              title={t.location.mapTitle}
               src={MAP_EMBED}
               loading="lazy"
               referrerPolicy="strict-origin"
@@ -999,10 +826,10 @@ function Index() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-6">
           <Reveal className="max-w-xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">Explore Tirana</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Things to do near the hostel</h2>
+            <p className="text-xs font-semibold uppercase tracking-widest text-accent">{t.thingsToDo.label}</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">{t.thingsToDo.heading}</h2>
             <p className="mt-3 text-muted-foreground">
-              We're in the middle of everything. Here's what's worth your time.
+              {t.thingsToDo.description}
             </p>
           </Reveal>
           <img
@@ -1012,24 +839,27 @@ function Index() {
           />
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {thingsToDo.map((item, i) => (
-            <Reveal
-              key={item.title}
-              delay={(i % 3) * 60}
-              className="rounded-2xl border border-border bg-card transition-colors hover:border-accent"
-            >
-              <SpotlightCard className="h-full rounded-2xl p-5">
-                <div className="flex items-center justify-between gap-2">
-                  <item.icon className="size-5 text-accent" />
-                  <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent">
-                    {item.distance}
-                  </span>
-                </div>
-                <h3 className="mt-3 text-base font-semibold">{item.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-              </SpotlightCard>
-            </Reveal>
-          ))}
+          {t.thingsToDo.items.map((item, i) => {
+            const Icon = thingsToDoIcons[i]!;
+            return (
+              <Reveal
+                key={item.title}
+                delay={(i % 3) * 60}
+                className="rounded-2xl border border-border bg-card transition-colors hover:border-accent"
+              >
+                <SpotlightCard className="h-full rounded-2xl p-5">
+                  <div className="flex items-center justify-between gap-2">
+                    <Icon className="size-5 text-accent" />
+                    <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent">
+                      {item.distance}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 text-base font-semibold">{item.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                </SpotlightCard>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
@@ -1037,12 +867,12 @@ function Index() {
       <section id="faq" className="border-y border-border bg-secondary/50">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
           <Reveal className="relative">
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">FAQ</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Good to know</h2>
+            <p className="text-xs font-semibold uppercase tracking-widest text-accent">{t.faq.label}</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">{t.faq.heading}</h2>
             <BeardStrokeAnimation className="pointer-events-none absolute -top-6 right-0 hidden h-40 w-40 text-primary/60 sm:block" />
           </Reveal>
           <div className="mt-8 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-card">
-            {faqs.map((f, i) => (
+            {t.faq.items.map((f, i) => (
               <div key={f.q}>
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -1073,11 +903,11 @@ function Index() {
           <div>
             <Wordmark tone="light" />
             <p className="mt-4 max-w-xs font-display text-xl text-accent">
-              A family home in Tirana. Open to the world.
+              {t.footer.tagline}
             </p>
           </div>
           <div className="text-sm">
-            <h3 className="font-display text-lg">Find us</h3>
+            <h3 className="font-display text-lg">{t.footer.findUs}</h3>
             <a
               href={DIRECTIONS}
               target="_blank"
@@ -1105,11 +935,11 @@ function Index() {
               rel="noreferrer"
               className="mt-2 flex items-center gap-2 text-primary-foreground/80 hover:text-accent"
             >
-              <MessageCircle className="size-4" /> WhatsApp us
+              <MessageCircle className="size-4" /> {t.misc.whatsapp}
             </a>
           </div>
           <div className="text-sm">
-            <h3 className="font-display text-lg">Book with us</h3>
+            <h3 className="font-display text-lg">{t.footer.bookWith}</h3>
             <a
               href={BOOK_URL}
               target="_blank"
@@ -1127,12 +957,12 @@ function Index() {
               Booking.com
             </a>
             <p className="mt-4 text-primary-foreground/60">
-              Reception 08:00 to 01:00 · Check-in from 13:00
+              {t.footer.reception}
             </p>
           </div>
         </div>
         <div className="border-t border-primary-foreground/15 py-5 text-center text-xs text-primary-foreground/60">
-          © {new Date().getFullYear()} Bearded Dad Hostel · Tirana, Albania
+          © {new Date().getFullYear()} Bearded Dad Hostel · {t.footer.city}
         </div>
       </footer>
       {/* FLOATING WHATSAPP BUTTON */}
@@ -1144,7 +974,7 @@ function Index() {
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:shadow-xl"
       >
         <MessageCircle className="size-5" />
-        <span className="hidden sm:inline">WhatsApp us</span>
+        <span className="hidden sm:inline">{t.misc.whatsapp}</span>
       </a>
     </div>
     </ClickSpark>

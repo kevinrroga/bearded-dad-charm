@@ -1,4 +1,4 @@
-const items = [
+const defaultItems = [
   'Rated 9.4 Superb on Hostelworld',
   '"The best hostel I\'ve ever stayed in" · Lexi, Australia',
   'Free breakfast · Free bicycles · Free city tour',
@@ -11,8 +11,8 @@ const items = [
   'Nesha the hostel dog says hi',
 ];
 
-export function MarqueeStrip() {
-  const doubled = [...items, ...items];
+export function MarqueeStrip({ items }: { items?: string[] }) {
+  const doubled = [...(items ?? defaultItems), ...(items ?? defaultItems)];
 
   return (
     <div className="overflow-hidden border-y border-border bg-secondary/40 py-3">

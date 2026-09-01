@@ -34,7 +34,7 @@ function ImageCard({ img, absoluteIndex, onOpen }: ImageCardProps) {
   );
 }
 
-export function Gallery({ images }: { images: GalleryImage[] }) {
+export function Gallery({ images, swipeHint = 'Swipe to browse' }: { images: GalleryImage[]; swipeHint?: string }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number>(0);
@@ -96,7 +96,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
             </div>
           ))}
         </div>
-        <p className="mt-2 text-center text-xs text-muted-foreground">Swipe to browse</p>
+        <p className="mt-2 text-center text-xs text-muted-foreground">{swipeHint}</p>
       </div>
 
       {/* Desktop parallax grid */}
