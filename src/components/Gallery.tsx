@@ -167,7 +167,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
             <ChevronRight className="size-6" />
           </button>
 
-          <div className="absolute bottom-5 flex flex-col items-center gap-1">
+          <div className="absolute inset-x-0 bottom-5 flex flex-col items-center gap-1 px-8 text-center">
             {images[lightboxIndex].caption && (
               <p className="text-sm text-white/90 font-medium drop-shadow">
                 {images[lightboxIndex].caption}
